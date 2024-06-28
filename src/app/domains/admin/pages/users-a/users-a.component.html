@@ -1,9 +1,37 @@
+<!-- Botón para mostrar/ocultar el formulario de agregar usuario -->
+<button class="border  rounded bg-purple-700" mat-button (click)="toggleAddUserForm()">
+  {{ showAddUserForm ? 'Cancelar' : 'Agregar Usuario' }}
+</button>
+<!-- Formulario para agregar un nuevo usuario -->
+<div *ngIf="showAddUserForm">
+  <form (ngSubmit)="addUser()">
+    <div>
+      <label for="name">Nombre:</label>
+      <input id="name" [(ngModel)]="newUser.name" name="name" required>
+    </div>
+    <div>
+      <label for="email">Email:</label>
+      <input id="email" [(ngModel)]="newUser.email" name="email" required>
+    </div>
+    <div>
+      <label for="password">Contraseña:</label>
+      <input id="password" [(ngModel)]="newUser.password" name="password" required>
+    </div>
+    <div>
+      <label for="registrationdate">Fecha de Registro:</label>
+      <input id="registrationdate" [(ngModel)]="newUser.registrationdate" name="registrationdate" type="date" required>
+    </div>
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+
+
 <p>users-a works!</p>
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
     <!-- Position Column -->
-    <ng-container matColumnDef="demo-position">
-      <th mat-header-cell *matHeaderCellDef> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    <ng-container matColumnDef="demo-userid">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.userid}} </td>
     </ng-container>
   
     <!-- Name Column -->
@@ -13,17 +41,38 @@
     </ng-container>
   
     <!-- Weight Column -->
-    <ng-container matColumnDef="demo-weight">
-      <th mat-header-cell *matHeaderCellDef> Weight </th>
-      <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
+    <ng-container matColumnDef="demo-email">
+      <th mat-header-cell *matHeaderCellDef> email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
     </ng-container>
   
     <!-- Symbol Column -->
-    <ng-container matColumnDef="demo-symbol">
-      <th mat-header-cell *matHeaderCellDef> Symbol </th>
-      <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
+    <ng-container matColumnDef="demo-password">
+      <th mat-header-cell *matHeaderCellDef> password </th>
+      <td mat-cell *matCellDef="let element"> {{element.password}} </td>
     </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="demo-registrationdate">
+      <th mat-header-cell *matHeaderCellDef> registrationdate </th>
+      <td mat-cell *matCellDef="let element"> {{element.registrationdate}} </td>
+    </ng-container>
+
+    <!-- Acciones Column -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td  mat-cell *matCellDef="let element">
+      <button class="border rounded" mat-button (click)="editUser(element)">Editar</button>
+      <button class="border rounded" mat-button (click)="deleteUser(element)">Eliminar</button>
+    </td>
+  </ng-container>
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  
+  
+  
+  
+  

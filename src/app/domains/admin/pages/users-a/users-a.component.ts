@@ -1,36 +1,109 @@
-import { Component } from '@angular/core';
+import { Component, WritableSignal, inject, signal } from '@angular/core';
 import {MatTableModule} from '@angular/material/table'
+import { User } from '@shared/models/user.model';
+import { UsersService } from '@shared/services/users.service';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 export interface PeriodicElement {
+  userid:number
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  email: string;
+  password: string;
+  registrationdate: Date;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+
 
 @Component({
   selector: 'app-users-a',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [MatTableModule,FormsModule,CommonModule],
   templateUrl: './users-a.component.html',
   styleUrl: './users-a.component.css'
 })
 export class UsersAComponent {
 
-  displayedColumns: string[] = ['demo-position', 'demo-name', 'demo-weight', 'demo-symbol'];
-  dataSource = ELEMENT_DATA;
-  
+  users: WritableSignal<User[]> = signal<User[]>([]);
+
+  showAddUserForm: boolean = false;
+  newUser: Partial<User> = {
+    name: '',
+    email: '',
+    password: '',
+    registrationdate: new Date()
+  };
+
+  private userService=inject(UsersService);
+
+  displayedColumns: string[] = ['demo-userid', 'demo-name', 'demo-email', 'demo-password', 'demo-registrationdate', 'acciones'];
+  //dataSource = this.users;
+
+
+  ngOnInit()
+  {
+    this.userService.getUsers()
+    .subscribe({
+      next:(users)=>{
+        this.users.set(users);
+         
+      },
+      error:()=>{
+
+      }
+    })
+  }
+  // Getter para dataSource que devuelve los datos de la señal users
+  get dataSource() {
+    return this.users();
+  }
+
+
+  // Métodos para editar y eliminar
+  editUser(user: User) {
+    // Implementa la lógica para editar el usuario
+    console.log('Edit user:', user);
+  }
+
+  deleteUser(user: User) {
+    console.log('Delete user:', user);
+    this.userService.deleteUser(user.userid).subscribe({
+      next: () => {
+        // Filtrar el usuario eliminado de la lista
+        this.users.set(this.users().filter(u => u.userid !== user.userid));
+        console.log(`User with ID ${user.userid} deleted`);
+      },
+      error: (err) => {
+        console.error('Error deleting user:', err);
+      }
+    });
+  }
+
+
+  //
+
+  toggleAddUserForm() {
+    this.showAddUserForm = !this.showAddUserForm;
+  }
+
+  addUser() {
+    // Convierte newUser a User antes de enviarlo al servicio
+    const userToSave: User = {
+      ...this.newUser,
+      userid: 0, // Este campo se ignorará en el backend
+      registrationdate: new Date(this.newUser.registrationdate || new Date())
+    } as User;
+
+    this.userService.saveUser(userToSave).subscribe({
+      next: (user: User) => {
+        this.users.set([...this.users(), user]);
+        this.newUser = { name: '', email: '', password: '', registrationdate: new Date() };
+        this.showAddUserForm = false;
+        console.log('User created:', user);
+      },
+      error: (err) => {
+        console.error('Error creating user:', err);
+      }
+    });
+  }
 }
