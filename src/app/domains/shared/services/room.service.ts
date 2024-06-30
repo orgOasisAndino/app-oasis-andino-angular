@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Room } from '../models/room.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,9 +13,20 @@ export class RoomService {
   constructor() { }
 
 
-  getRooms()
-  {
-    return this.http.get<Room[]>('http://localhost:8080/oasis-andino/api/room/all')
+  getRooms():Observable<Room[]> {
+    return this.http.get<Room[]>('http://localhost:8080/oasis-andino/api/room/all');
     //return this.http.get<Room[]>('https://oasis-andino-backend-fi6jg5aela-uc.a.run.app/oasis-andino/api/room/all')
+  }
+
+  getRoom(id: number): Observable<Room> {
+    return this.http.get<Room>(`http://localhost:8080/oasis-andino/api/room/id/${id}`);
+  }
+
+  saveRoom(room: Room): Observable<Room> {
+    return this.http.post<Room>('http://localhost:8080/oasis-andino/api/room/save', room);
+  }
+
+  deleteRoom(id: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8080/oasis-andino/api/room/delete/${id}`);
   }
 }

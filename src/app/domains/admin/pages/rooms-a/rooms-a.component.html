@@ -1,1 +1,97 @@
-<p>rooms-a works!</p>
+<!-- Botón para mostrar/ocultar el formulario de agregar usuario -->
+<button class="border  rounded bg-purple-700" mat-button (click)="toggleAddRoomForm()">
+  {{ showAddRoomForm ? 'Cancelar' : 'Agregar Room' }}
+</button>
+<!-- Formulario para agregar un nuevo usuario -->
+<div *ngIf="showAddRoomForm">
+  <form (ngSubmit)="addRoom()">
+    <div>
+      <label for="number">number:</label>
+      <input id="number" [(ngModel)]="newRoom.number" name="number" required>
+    </div>
+    <div>
+      <label for="floor">floor:</label>
+      <input id="floor" [(ngModel)]="newRoom.floor" name="floor" required>
+    </div>
+    <div>
+      <label for="description">description:</label>
+      <input id="description" [(ngModel)]="newRoom.description" name="description" required>
+    </div>
+    <div>
+      <label for="ability">ability:</label>
+      <input id="ability" [(ngModel)]="newRoom.ability" name="ability" required>
+    </div>
+    <div>
+      <label for="pricePerNight">pricePerNight:</label>
+      <input id="pricePerNight" [(ngModel)]="newRoom.pricePerNight" name="pricePerNight" required>
+    </div>
+    <div>
+      <label for="pricePerMonth">pricePerMonth:</label>
+      <input id="pricePerMonth" [(ngModel)]="newRoom.pricePerMonth" name="pricePerMonth" required>
+    </div>
+    <button type="submit">Guardar</button>
+  </form>
+</div>
+
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="roomId">
+      <th mat-header-cell *matHeaderCellDef> roomId </th>
+      <td mat-cell *matCellDef="let element"> {{element.roomId}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef> number </th>
+      <td mat-cell *matCellDef="let element"> {{element.number}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="floor">
+      <th mat-header-cell *matHeaderCellDef> floor </th>
+      <td mat-cell *matCellDef="let element"> {{element.floor}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> description </th>
+      <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+    </ng-container>
+    
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="ability">
+        <th mat-header-cell *matHeaderCellDef> ability </th>
+        <td mat-cell *matCellDef="let element"> {{element.ability}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+    <ng-container matColumnDef="pricePerNight">
+        <th mat-header-cell *matHeaderCellDef> pricePerNight </th>
+        <td mat-cell *matCellDef="let element"> {{element.pricePerNight}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+    <ng-container matColumnDef="pricePerMonth">
+        <th mat-header-cell *matHeaderCellDef> pricePerMonth </th>
+        <td mat-cell *matCellDef="let element"> {{element.pricePerMonth}} </td>
+      </ng-container>
+
+        <!-- Acciones Column -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td  mat-cell *matCellDef="let element">
+      <button class="border rounded" mat-button (click)="editRoom(element)">Editar</button>
+      <button class="border rounded" mat-button (click)="deleteRoom(element)">Eliminar</button>
+    </td>
+  </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  

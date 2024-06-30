@@ -1,1 +1,81 @@
+<button class="border  rounded bg-purple-700" mat-button (click)="toggleAddPayForm()">
+    {{ showAddPayForm ? 'Cancelar' : 'Agregar Room' }}
+  </button>
+  <!-- Formulario para agregar un nuevo usuario -->
+  <div *ngIf="showAddPayForm">
+    <form (ngSubmit)="addPay()">
+      <div>
+        <label for="paymentDate">paymentDate:</label>
+        <input id="paymentDate" [(ngModel)]="newPay.paymentDate" name="paymentDate" type="date" required>
+      </div>
+      <div>
+        <label for="amount">amount:</label>
+        <input id="amount" [(ngModel)]="newPay.amount" name="amount" required>
+      </div>
+      <div>
+        <label for="paymentMethod">paymentMethod:</label>
+        <input id="paymentMethod" [(ngModel)]="newPay.paymentMethod" name="paymentMethod" required>
+      </div>
+      <div>
+        <label for="reservationId">reservationId:</label>
+        <input id="reservationId" [(ngModel)]="newPay.reservationId" name="reservationId" required>
+      </div>
+      
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+
+
 <p>pay-a works!</p>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+  
+      <!-- Position Column -->
+      <ng-container matColumnDef="payId">
+        <th mat-header-cell *matHeaderCellDef> payId </th>
+        <td mat-cell *matCellDef="let element"> {{element.payId}} </td>
+      </ng-container>
+  
+      <!-- Name Column -->
+      <ng-container matColumnDef="paymentDate">
+        <th mat-header-cell *matHeaderCellDef> paymentDate </th>
+        <td mat-cell *matCellDef="let element"> {{element.paymentDate|date}} </td>
+      </ng-container>
+  
+      <!-- Weight Column -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> amount </th>
+        <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+      </ng-container>
+  
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="paymentMethod">
+        <th mat-header-cell *matHeaderCellDef> paymentMethod </th>
+        <td mat-cell *matCellDef="let element"> {{element.paymentMethod}} </td>
+      </ng-container>
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="reservationId">
+        <th mat-header-cell *matHeaderCellDef> reservationId </th>
+        <td mat-cell *matCellDef="let element"> {{element.reservationId}} </td>
+      </ng-container>
+
+             <!-- Acciones Column -->
+  <ng-container matColumnDef="acciones">
+    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+    <td  mat-cell *matCellDef="let element">
+      <button class="border rounded" mat-button (click)="editPay(element)">Editar</button>
+      <button class="border rounded" mat-button (click)="deletePay(element)">Eliminar</button>
+    </td>
+  </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+  

@@ -1,1 +1,86 @@
+<button class="border  rounded bg-purple-700" mat-button (click)="toggleAddRequestsForm()">
+    {{ showAddRequestForm ? 'Cancelar' : 'Agregar Usuario' }}
+  </button>
+  <!-- Formulario para agregar un nuevo usuario -->
+  <div *ngIf="showAddRequestForm">
+    <form (ngSubmit)="addRequest()">
+      <div>
+        <label for="name">Nombre:</label>
+        <input id="name" [(ngModel)]="newRequest.name" name="name" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input id="email" [(ngModel)]="newRequest.email" name="email" required>
+      </div>
+      <div>
+        <label for="message">message:</label>
+        <input id="message" [(ngModel)]="newRequest.message" name="message" required>
+      </div>
+      <div>
+        <label for="date">date:</label>
+        <input id="date" [(ngModel)]="newRequest.date" name="date" type="date" required>
+      </div>
+
+      <div>
+        <label for="state">state:</label>
+        <input id="state" [(ngModel)]="newRequest.state" name="state" required>
+      </div>
+
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+
+
 <p>requests-a works!</p>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="requestsId">
+      <th mat-header-cell *matHeaderCellDef> requestsId </th>
+      <td mat-cell *matCellDef="let element"> {{element.requestsId}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="email">
+      <th mat-header-cell *matHeaderCellDef> email </th>
+      <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+    </ng-container>
+  
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef> message </th>
+      <td mat-cell *matCellDef="let element"> {{element.message}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef> date </th>
+        <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="state">
+        <th mat-header-cell *matHeaderCellDef> state </th>
+        <td mat-cell *matCellDef="let element"> {{element.state}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td  mat-cell *matCellDef="let element">
+          <button class="border rounded" mat-button (click)="editRequests(element)">Editar</button>
+          <button class="border rounded" mat-button (click)="deleteRequests(element)">Eliminar</button>
+        </td>
+      </ng-container>
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  
+  
