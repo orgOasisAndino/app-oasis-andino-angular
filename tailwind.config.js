@@ -55,6 +55,7 @@ module.exports = {
         "Segoe UI Symbol",
         "Noto Color Emoji",
       ],
+      dancing: ['Dancing Script', 'cursive'],
     },
   },
   plugins: [],
