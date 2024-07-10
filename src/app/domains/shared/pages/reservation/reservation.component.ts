@@ -18,7 +18,7 @@ export class ReservationComponent {
 
   private roomService=inject(RoomService);
 
-  ngOnInit()
+  /*ngOnInit()
   {
     this.roomService.getRooms()
     .subscribe({
@@ -29,6 +29,18 @@ export class ReservationComponent {
 
       }
     })
-  }
+  }*/
+
+    buscarDisponibilidad() {
+      this.roomService.getRooms()
+        .subscribe({
+          next: (rooms) => {
+            this.rooms.set(rooms);
+          },
+          error: (error) => {
+            console.error('Error al obtener las habitaciones:', error);
+          }
+        });
+    }
 
 }

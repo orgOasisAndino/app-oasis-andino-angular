@@ -15,7 +15,7 @@
   </div>
 </div>
 
-<div class="my-6 pb-60">
+<div class="my-6 pb-10">
   <p class="text-3xl font-bold">Comprobar disponibilidad</p>
 
   <div class="flex flex-row justify-center items-center mt-14 w-auto">
@@ -31,12 +31,15 @@
       </div>
     </div>
 
-    <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 h-9 ml-44">Buscar</button>
+    <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 h-9 ml-44"  (click)="buscarDisponibilidad()">Buscar</button>
   </div>
 
 </div>
 
-
+<div *ngIf="rooms().length > 0" class="container mx-auto grid grid-cols-1 place-items-center mt-8 gap-4">
+  <p class="text-3xl font-semibold">Habitaciones disponibles</p>
+  <app-room *ngFor="let room of rooms()" [room]="room"></app-room>
+</div>
 
 <!--
 <p>reservation</p>
