@@ -14,6 +14,7 @@ import { ReservationAComponent } from './domains/admin/pages/reservation-a/reser
 import { PayAComponent } from './domains/admin/pages/pay-a/pay-a.component';
 import { ServicesAAComponent } from './domains/admin/pages/services-a-a/services-a-a.component';
 import { RequestsAComponent } from './domains/admin/pages/requests-a/requests-a.component';
+import { PaymentsComponent } from '@shared/pages/payments/payments.component';
 
 export const routes: Routes = [
     {
@@ -39,7 +40,11 @@ export const routes: Routes = [
             {
                 path:'services',
                 component:ServicesAComponent
-            }
+            },
+            {
+              path:'payments',
+              component: PaymentsComponent
+          }
         ]
     },
     {

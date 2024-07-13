@@ -1,4 +1,72 @@
 
+<div *ngIf="mostrarDetalles; else roomList">
+  <div>
+    <p class="text-3xl font-bold pl-16 pt-9">Detalles de la Reserva</p>
+
+    <div class="flex flex-row pl-16">
+
+      <div class="flex flex-row place-items-center w-auto h-[20rem] rounded-lg">
+        <img class="w-[20rem] h-[20rem] rounded-l-lg" src="../../../../../assets/imgs/room.jpg" alt="room">
+
+        <div class="bg-gray-400 flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
+          <div class="flex flex-col place-items-center">
+            <div class="font-bold ">Habitacion 401</div>
+            <div class="text-xs">Piso 3</div>
+            <div class="text-xs">Con vista a la calle</div>
+          </div>
+
+          <div class="mt-2 text-xs">
+            <p class="font-semibold">Características</p>
+            <ul class="pl-5">
+              <li>Baño privado con ducha y agua caliente</li>
+              <li>Cama de dos plazas</li>
+              <li>TV con cable</li>
+              <li>Mesa y silla de escritorio</li>
+              <li>Armario</li>
+            </ul>
+
+            <p class="font-semibold pt-2">Estilo:</p>
+            <ul class="pl-5">
+              <li>Paredes: Color específico</li>
+              <li>Baño: Losa con color y diseño específico</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-gray-500 ml-32 pt-4 rounded-sm border-black w-96 h-64">
+        <div class="px-6">
+            <p>Su estancia</p>
+          <div>
+            <p>Fecha de entrada: 10/11/2024 </p>
+            <p>Fecha de salida: 20/11/2024</p>
+            <p>Cantidad de huéspedes: 2</p>
+          </div>
+        </div>
+
+        <div class="border-t border-black mt-14">
+          <p class="text-right pr-5 ">Costo total: S/250</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex items-center justify-items-center p-4 bg-gray-200 rounded-lg w-60 mt-8 ml-16">
+      <span class="mr-4">Huéspedes</span>
+      <button class="bg-gray-400 text-white rounded w-6 h-6 flex items-center justify-center">-</button>
+      <span class="mx-4">1</span>
+      <button class="bg-gray-400 text-white rounded w-6 h-6 flex items-center justify-center">+</button>
+    </div>
+
+    <div class="flex items-center justify-center ">
+      <button routerLink="/payments" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-md mt-8 ml-12 mb-8">Confirmar</button>
+    </div>
+
+  </div>
+</div>
+
+
+
+<ng-template #roomList>
   <!--pORTADA-->
 <div class="bg-gray-500 w-full h-[539px] flex flex-col justify-center">
   <p class="text-7xl pl-28 pb-1 font-bold">Reserva tu habitación</p>
@@ -31,15 +99,17 @@
       </div>
     </div>
 
-    <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 h-9 ml-44"  (click)="buscarDisponibilidad()">Buscar</button>
+    <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700 h-9 ml-44" (click)="buscarDisponibilidad()">Buscar</button>
   </div>
 
 </div>
 
 <div *ngIf="rooms().length > 0" class="container mx-auto grid grid-cols-1 place-items-center mt-8 gap-4">
-  <p class="text-3xl font-semibold">Habitaciones disponibles</p>
-  <app-room *ngFor="let room of rooms()" [room]="room"></app-room>
+  <app-room *ngFor="let room of rooms()" [room]="room" (seleccionar)="seleccionarHabitacion()"></app-room>
 </div>
+
+</ng-template>
+
 
 <!--
 <p>reservation</p>

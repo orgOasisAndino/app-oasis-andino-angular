@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input,Output, EventEmitter} from '@angular/core';
 import {Room} from '@shared/models/room.model'
 
 @Component({
@@ -9,7 +9,12 @@ import {Room} from '@shared/models/room.model'
   styleUrl: './room.component.css'
 })
 export class RoomComponent {
-    
+
   @Input({required:true}) room!:Room;
 
+  @Output() seleccionar = new EventEmitter<void>();
+
+  seleccionarHabitacion() {
+    this.seleccionar.emit();
+  }
 }
