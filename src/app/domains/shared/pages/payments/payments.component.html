@@ -157,7 +157,7 @@
 
     <div class="overflow-auto max-h-[700px]">
       <!-- Primera parte del modal -->
-        <div *ngIf="!selectedPaymentMethod">
+        <div *ngIf="!selectedPaymentMethod && !thirdPartVisible">
           <div class="flex flex-col items-center pt-7">
             <img class="w-[152px] h-[98px]" src="../../../../../assets/imgs/bn.png" alt="bn">
             <div class="flex justify-center items-center bg-slate-500  mt-3 w-[280px] h-[50px] rounded-lg text-center">
@@ -181,7 +181,7 @@
 
 
     <!-- Segunda parte del modal para Banca Móvil o Web -->
-    <div *ngIf="selectedPaymentMethod === 'movilWeb'">
+    <div *ngIf="selectedPaymentMethod === 'movilWeb' && !thirdPartVisible">
       <div class="flex flex-col items-center pt-5">
         <p class="text-lg font-medium">Banca Móvil o Web</p>
         <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
@@ -203,13 +203,14 @@
         </ol>
       </div>
 
-      <div class="flex justify-center pt-5 pb-5">
+      <div class="flex justify-center pt-5 pb-5 gap-10">
         <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button (click)="showThirdPart('movilWeb')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Registrar</button>
       </div>
     </div>
 
     <!-- Segunda parte del modal para Agente o Ventanilla -->
-    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla'">
+    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla'  && !thirdPartVisible">
       <div class="flex flex-col items-center pt-5">
         <p class="text-lg font-medium">Agente o Ventanilla</p>
         <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
@@ -231,8 +232,58 @@
         </ol>
       </div>
 
-      <div class="flex justify-center pt-5 pb-5">
+      <div class="flex flex-row justify-center pt-5 pb-5 gap-10">
         <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button (click)="showThirdPart('agenteVentanilla')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Registrar</button>
+      </div>
+    </div>
+
+    <!-- Tercera parte del modal para Banca Móvil o Web -->
+    <div *ngIf="thirdPartVisible === 'movilWeb'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Registrar pago Banca Móvil o Web</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
+        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
+          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
+          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
+        </div>
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
+      </div>
+
+      <div class="flex flex-row justify-center gap-10 pb-6">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Enviar</button>
+      </div>
+
+    </div>
+
+    <!-- Tercera parte del modal para Agente o Ventanilla -->
+    <div *ngIf="thirdPartVisible === 'agenteVentanilla'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Registrar pago agente o ventanilla</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
+        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
+          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
+          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
+        </div>
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
+      </div>
+
+      <div class="flex flex-row  justify-center gap-10 pb-6">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Enviar</button>
       </div>
     </div>
 
@@ -249,7 +300,7 @@
 
     <div class="overflow-auto max-h-[700px]">
       <!-- Primera parte del modal -->
-        <div *ngIf="!selectedPaymentMethod">
+        <div *ngIf="!selectedPaymentMethod && !thirdPartVisible">
           <div class="flex flex-col items-center pt-7">
             <img class="w-[152px] h-[98px]" src="../../../../../assets/imgs/bn.png" alt="bn">
             <div class="flex justify-center items-center bg-slate-500  mt-3 w-[280px] h-[50px] rounded-lg text-center">
@@ -273,7 +324,7 @@
 
 
     <!-- Segunda parte del modal para Banca Móvil o Web -->
-    <div *ngIf="selectedPaymentMethod === 'movilWeb'">
+    <div *ngIf="selectedPaymentMethod === 'movilWeb' && !thirdPartVisible">
       <div class="flex flex-col items-center pt-5">
         <p class="text-lg font-medium">Banca Móvil o Web</p>
         <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
@@ -295,13 +346,14 @@
         </ol>
       </div>
 
-      <div class="flex justify-center pt-5 pb-5">
+      <div class="flex flex-row justify-center pt-5 pb-5 gap-10">
         <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button (click)="showThirdPart('agenteVentanilla')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Registrar</button>
       </div>
     </div>
 
     <!-- Segunda parte del modal para Agente o Ventanilla -->
-    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla'">
+    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla' && !thirdPartVisible">
       <div class="flex flex-col items-center pt-5">
         <p class="text-lg font-medium">Agente o Ventanilla</p>
         <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
@@ -323,11 +375,61 @@
         </ol>
       </div>
 
-      <div class="flex justify-center pt-5 pb-5">
+      <div class="flex flex-row justify-center pt-5 pb-5 gap-10">
         <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button (click)="showThirdPart('agenteVentanilla')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Registrar</button>
       </div>
     </div>
 
+
+    <!-- Tercera parte del modal para Banca Móvil o Web -->
+    <div *ngIf="thirdPartVisible === 'movilWeb'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Registrar pago Banca Móvil o Web</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
+        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
+          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
+          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
+        </div>
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
+      </div>
+
+      <div class="flex flex-row justify-center gap-10 pb-6">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Enviar</button>
+      </div>
+
+    </div>
+
+    <!-- Tercera parte del modal para Agente o Ventanilla -->
+    <div *ngIf="thirdPartVisible === 'agenteVentanilla'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Registrar pago agente o ventanilla</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
+        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
+          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
+          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
+        </div>
+        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
+      </div>
+
+      <div class="flex flex-row  justify-center gap-10 pb-6">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Enviar</button>
+      </div>
+    </div>
 
   </div>
 </div>

@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 export class PaymentsComponent {
   modalVisible: string | null = null;
   selectedPaymentMethod: string | null = null;
+  thirdPartVisible: string | null = null;
 
   openModal(modalId: string) {
     this.modalVisible = modalId;
@@ -18,6 +19,8 @@ export class PaymentsComponent {
 
   closeModal() {
     this.modalVisible = null;
+    this.selectedPaymentMethod = null;
+    this.thirdPartVisible = null;
   }
 
   copyToClipboard() {
@@ -35,6 +38,11 @@ export class PaymentsComponent {
 
   resetPaymentMethod() {
     this.selectedPaymentMethod = null;
+    this.thirdPartVisible = null;
+  }
+
+  showThirdPart(method: string) {
+    this.thirdPartVisible = method;
   }
 
 }
