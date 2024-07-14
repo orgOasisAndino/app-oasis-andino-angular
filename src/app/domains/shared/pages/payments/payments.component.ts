@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PaymentsComponent {
   modalVisible: string | null = null;
+  selectedPaymentMethod: string | null = null;
 
   openModal(modalId: string) {
     this.modalVisible = modalId;
@@ -21,12 +22,19 @@ export class PaymentsComponent {
 
   copyToClipboard() {
     const textToCopy = document.getElementById('paymentMessage')!.textContent!;
-    const tempInput = document.createElement('input');
-    tempInput.value = textToCopy;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempInput);
-    alert('Texto copiado: ' + textToCopy);
+    navigator.clipboard.writeText(textToCopy).then(() => {
+      alert('Texto copiado');
+    }).catch(err => {
+      console.error('Error al copiar el texto: ', err);
+    });
   }
+
+  selectPaymentMethod(method: string) {
+    this.selectedPaymentMethod = method;
+  }
+
+  resetPaymentMethod() {
+    this.selectedPaymentMethod = null;
+  }
+
 }

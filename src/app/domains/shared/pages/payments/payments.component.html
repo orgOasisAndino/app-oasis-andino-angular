@@ -9,15 +9,18 @@
   </div>
 
 
+
+
   <div class="flex flex-row justify-center gap-16 mt-16">
-    <div class="bg-gray-700 w-24 h-24 flex items-center justify-center rounded-lg text-white cursor-pointer"(click)="openModal('yape')">Yape</div>
-    <div class="bg-gray-700 w-24 h-24 flex items-center justify-center rounded-lg text-white cursor-pointer" (click)="openModal('plin')">Plin</div>
-    <div class="bg-gray-700 w-24 h-24 flex items-center justify-center rounded-lg text-white text-center cursor-pointer" (click)="openModal('banco')">Banco de la Nación</div>
-    <div class="bg-gray-700 w-24 h-24 flex items-center justify-center rounded-lg text-white cursor-pointer" (click)="openModal('bcp')">bcp</div>
+    <img class="w-24 h-24 cursor-pointer" (click)="openModal('yape')" src="../../../../../assets/imgs/yape-1.png" alt="yape1">
+    <img class="w-24 h-24 cursor-pointer" (click)="openModal('plin')" src="../../../../../assets/imgs/plin.png" alt="plin1">
+    <img class="w-[152px] h-[98px] cursor-pointer" (click)="openModal('banco')" src="../../../../../assets/imgs/bn.png" alt="bn1">
+    <img class="w-24 h-24 cursor-pointer" (click)="openModal('bcp')" src="../../../../../assets/imgs/bcp1.png" alt="bcp1">
   </div>
 </div>
 
 <!-- Modales -->
+<!-- YAPE -->
 <div *ngIf="modalVisible === 'yape'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
   <div class="modal-content bg-white rounded-lg w-auto">
     <div class="pl-2 pt-1">
@@ -26,17 +29,19 @@
 
     <div class="flex flex-col items-center justify-center mb-2">
       <img class="w-16 h-[66px]" src="../../../../../assets/imgs/yape-1.png" alt="yape">
-      <div class="flex justify-center items-center bg-slate-500  mt-5  w-[300px] h-[50px] rounded-lg text-center">
-        <p class="text-center text-white text-lg font-medium ">Total a pagar: S/.40</p>
+      <div class="flex justify-center items-center bg-slate-500  mt-5  w-[280px] h-[50px] rounded-lg text-center">
+        <p class="text-center text-white text-lg font-medium pt-5">Total a pagar: S/.40</p>
       </div>
     </div>
 
-    <p class="pt-5 pl-4">Escanea el Código QR o Agreganos en tus contactos y completa la siguiente informacion:</p>
+    <p class="pt-5 pl-4 text-sm font-medium">Escanea el Código QR o Agreganos en tus contactos y completa la siguiente informacion:</p>
 
-    <div class="flex flex-row gap-8 px-4">
+    <div class="flex flex-row justify-center items-center gap-8 px-4">
       <div class="flex flex-col items-center justify-center">
         <img class="w-[14rem] h-[15rem] rounded-md" src="../../../../../assets/imgs/qr.png" alt="QR">
-        <button type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2">Descargar QR</button>
+        <a href="../../../../../assets/imgs/qr.png" download="qr.png" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2 flex items-center justify-center">
+          Descargar QR
+        </a>
       </div>
 
       <div class="p-2 flex flex-col  text-sm">
@@ -45,16 +50,80 @@
           <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
 
           <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
-            <label class="font-medium" for="captura-pago ">Captura del pago:</label>
+            <label class="font-medium text-sm" for="captura-pago ">Captura del pago:</label>
             <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
           </div>
         </div>
 
-        <div class="gap-1 pt-4 ">
+        <div class="gap-1 pt-3 ">
           <label for="paymentMessage" class="font-medium">Mensaje del pago:</label>
           <div class="bg-yellow-200 border border-black p-2 flex flex-row items-center  w-[24rem] h-10 mt-2">
-            <span id="paymentMessage" class="pt-2">128279giordota.com</span>
-            <button onclick="copyToClipboard()" class="ml-48">
+            <span id="paymentMessage" class="pt-2 pl-2 text-md font-medium">128279giordota.com</span>
+            <button (click)="copyToClipboard()" class="ml-48">
+              <img src="../../../../../assets/imgs/copia.png" alt="Copiar" class="w-4 h-4"/>
+            </button>
+          </div>
+
+          <div class="flex flex-row mt-1 gap-2">
+            <p class="text-xs font-medium">*Ingresalo en la seccion mensaje* </p>
+            <div class="relative tooltip">
+              <span class="text-sm cursor-pointer  bg-pink-400 rounded-full  w-64 h-64">?</span>
+              <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2  w-72 h-96 bg-gray-700 text-white text-center rounded-lg tooltiptext">
+                <img class="w-72 h-96 rounded-lg" src="../../../../../assets/imgs/yapemensaje.png" alt="yapemensaje">
+              </div>
+            </div>
+          </div>
+
+          <div  class="flex items-center justify-center">
+            <button type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2">Registrar</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PLIN -->
+<div *ngIf="modalVisible === 'plin'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+  <div class="modal-content bg-white rounded-lg w-auto  ">
+    <div class="pl-2 pt-1">
+      <button class="bg-black text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium" (click)="closeModal()">X</button>
+    </div>
+
+    <div class="flex flex-col items-center justify-center mb-2">
+      <img class="w-16 h-[66px]" src="../../../../../assets/imgs/plin.png" alt="yape">
+      <div class="flex justify-center items-center bg-slate-500  mt-5  w-[280px] h-[50px] rounded-lg text-center">
+        <p class="text-center text-white text-lg font-medium pt-5">Total a pagar: S/.40</p>
+      </div>
+    </div>
+
+    <p class="pt-5 pl-4 text-sm font-medium">Escanea el Código QR o Agreganos en tus contactos y completa la siguiente informacion:</p>
+
+    <div class="flex flex-row justify-center items-center gap-8 px-4">
+      <div class="flex flex-col items-center justify-center">
+        <img class="w-[14rem] h-[15rem] rounded-md" src="../../../../../assets/imgs/qr.png" alt="QR">
+        <a href="../../../../../assets/imgs/qr.png" download="qr.png" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2 flex items-center justify-center">
+          Descargar QR
+        </a>
+      </div>
+
+      <div class="p-2 flex flex-col  text-sm">
+        <div class="flex flex-col gap-4">
+          <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
+          <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
+
+          <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
+            <label class="font-medium text-sm" for="captura-pago ">Captura del pago:</label>
+            <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
+          </div>
+        </div>
+
+        <div class="gap-1 pt-3 ">
+          <label for="paymentMessage" class="font-medium">Mensaje del pago:</label>
+          <div class="bg-yellow-200 border border-black p-2 flex flex-row items-center  w-[24rem] h-10 mt-2">
+            <span id="paymentMessage" class="pt-2 pl-2 text-md font-medium">128279giordota.com</span>
+            <button (click)="copyToClipboard()" class="ml-48">
               <img src="../../../../../assets/imgs/copia.png" alt="Copiar" class="w-4 h-4"/>
             </button>
           </div>
@@ -74,32 +143,201 @@
           </div>
 
         </div>
-
-
-
       </div>
     </div>
   </div>
+</div>
 
 
-</div>
-<div *ngIf="modalVisible === 'plin'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-  <div class="modal-content">
-    Contenido del modal PLIN
-    <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded" (click)="closeModal()">Cerrar</button>
-  </div>
-</div>
 <div *ngIf="modalVisible === 'banco'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-  <div class="modal-content">
-    Contenido del modal Banco de la Nación
-    <button (click)="closeModal()">Cerrar</button>
+  <div class="modal-content bg-white rounded-lg w-[600px] h-auto overflow-hidden">
+    <div class="pl-2 pt-2">
+      <button class="bg-black text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium" (click)="closeModal()">X</button>
+    </div>
+
+    <div class="overflow-auto max-h-[700px]">
+      <!-- Primera parte del modal -->
+        <div *ngIf="!selectedPaymentMethod">
+          <div class="flex flex-col items-center pt-7">
+            <img class="w-[152px] h-[98px]" src="../../../../../assets/imgs/bn.png" alt="bn">
+            <div class="flex justify-center items-center bg-slate-500  mt-3 w-[280px] h-[50px] rounded-lg text-center">
+              <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+            </div>
+          </div>
+
+          <p class="pt-10 pl-9 text-md font-medium">Selecciona tu método de pago:</p>
+
+          <div class="flex flex-row items-center justify-center w-full gap-10 pb-7 px-9">
+            <div (click)="selectPaymentMethod('movilWeb')" class="bg-gray-400 w-[270px] h-[80px] rounded-md flex items-center justify-center">
+              <p class="text-md  font-medium">Banca Móvil o Web</p>
+            </div>
+            <div (click)="selectPaymentMethod('agenteVentanilla')" class="bg-gray-400 w-[270px] h-[80px] rounded-md flex flex-col items-center justify-center">
+              <p class="text-md font-medium pt-2">Agente o Ventanilla</p>
+              <p class="text-sm ">(Bodega, farmacia, etc)</p>
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+    <!-- Segunda parte del modal para Banca Móvil o Web -->
+    <div *ngIf="selectedPaymentMethod === 'movilWeb'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Banca Móvil o Web</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div >
+        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
+        <ol class="pl-16 text-sm ">
+          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
+          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
+          <li>Ingresa el siguiente Numero de Cuenta:</li>
+          <p class="font-bold text-lg">04066989653</p>
+          <li>Confirma el titular: Ronald David Rios Perez</li>
+          <li>Escribe el monto de: S/.25.00</li>
+          <li>En Enviar Mensaje escribe: giordota.com</li>
+          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
+        </ol>
+      </div>
+
+      <div class="flex justify-center pt-5 pb-5">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+      </div>
+    </div>
+
+    <!-- Segunda parte del modal para Agente o Ventanilla -->
+    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Agente o Ventanilla</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div >
+        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
+        <ol class="pl-16 text-sm">
+          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
+          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
+          <li>Ingresa el siguiente Numero de Cuenta:</li>
+          <p class="font-bold text-lg">04066989653</p>
+          <li>Confirma el titular: Ronald David Rios Perez</li>
+          <li>Escribe el monto de: S/.25.00</li>
+          <li>En Enviar Mensaje escribe: giordota.com</li>
+          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
+        </ol>
+      </div>
+
+      <div class="flex justify-center pt-5 pb-5">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+      </div>
+    </div>
+
+
   </div>
 </div>
+
+
 <div *ngIf="modalVisible === 'bcp'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-  <div class="modal-content">
-    Contenido del modal BCP
-    <button (click)="closeModal()">Cerrar</button>
+  <div class="modal-content bg-white rounded-lg w-[600px] h-auto overflow-hidden">
+    <div class="pl-2 pt-2">
+      <button class="bg-black text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium" (click)="closeModal()">X</button>
+    </div>
+
+    <div class="overflow-auto max-h-[700px]">
+      <!-- Primera parte del modal -->
+        <div *ngIf="!selectedPaymentMethod">
+          <div class="flex flex-col items-center pt-7">
+            <img class="w-[152px] h-[98px]" src="../../../../../assets/imgs/bn.png" alt="bn">
+            <div class="flex justify-center items-center bg-slate-500  mt-3 w-[280px] h-[50px] rounded-lg text-center">
+              <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+            </div>
+          </div>
+
+          <p class="pt-10 pl-9 text-md font-medium">Selecciona tu método de pago:</p>
+
+          <div class="flex flex-row items-center justify-center w-full gap-10 pb-7 px-9">
+            <div (click)="selectPaymentMethod('movilWeb')" class="bg-gray-400 w-[270px] h-[80px] rounded-md flex items-center justify-center">
+              <p class="text-md  font-medium">Banca Móvil o Web</p>
+            </div>
+            <div (click)="selectPaymentMethod('agenteVentanilla')" class="bg-gray-400 w-[270px] h-[80px] rounded-md flex flex-col items-center justify-center">
+              <p class="text-md font-medium pt-2">Agente o Ventanilla</p>
+              <p class="text-sm ">(Bodega, farmacia, etc)</p>
+            </div>
+          </div>
+        </div>
+        </div>
+
+
+    <!-- Segunda parte del modal para Banca Móvil o Web -->
+    <div *ngIf="selectedPaymentMethod === 'movilWeb'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Banca Móvil o Web</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div >
+        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
+        <ol class="pl-16 text-sm ">
+          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
+          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
+          <li>Ingresa el siguiente Numero de Cuenta:</li>
+          <p class="font-bold text-lg">04066989653</p>
+          <li>Confirma el titular: Ronald David Rios Perez</li>
+          <li>Escribe el monto de: S/.25.00</li>
+          <li>En Enviar Mensaje escribe: giordota.com</li>
+          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
+        </ol>
+      </div>
+
+      <div class="flex justify-center pt-5 pb-5">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+      </div>
+    </div>
+
+    <!-- Segunda parte del modal para Agente o Ventanilla -->
+    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla'">
+      <div class="flex flex-col items-center pt-5">
+        <p class="text-lg font-medium">Agente o Ventanilla</p>
+        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
+          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        </div>
+      </div>
+
+      <div >
+        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
+        <ol class="pl-16 text-sm">
+          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
+          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
+          <li>Ingresa el siguiente Numero de Cuenta:</li>
+          <p class="font-bold text-lg">04066989653</p>
+          <li>Confirma el titular: Ronald David Rios Perez</li>
+          <li>Escribe el monto de: S/.25.00</li>
+          <li>En Enviar Mensaje escribe: giordota.com</li>
+          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
+        </ol>
+      </div>
+
+      <div class="flex justify-center pt-5 pb-5">
+        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2">Volver</button>
+      </div>
+    </div>
+
+
   </div>
 </div>
+
+
+
+
+
+
+
+
 
 

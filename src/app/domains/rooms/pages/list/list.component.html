@@ -1,4 +1,8 @@
-<div class="container mx-auto grid grid-cols-5">
-  <div class="bg-red-300">ajkfsjks</div>
+!--pORTADA-->
+<div class="bg-gray-500 w-full h-[539px] flex flex-col justify-center">
+  <p class="text-7xl pl-28 pb-1 font-bold">Nuestras Habitaciones</p>
+</div>
+
+<div class="container mx-auto my-4 grid grid-cols-2 gap-4">
     <app-room *ngFor="let room of rooms()" [room]="room"></app-room>
-  </div>
+</div>
