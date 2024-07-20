@@ -18,6 +18,9 @@ module.exports = {
           900: "#1e3a8a",
           950: "#172554",
         },
+
+        default: "#D8B47A",
+        secondary: "#61811D",
       },
     },
     fontFamily: {
