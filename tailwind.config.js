@@ -22,6 +22,11 @@ module.exports = {
         default: "#8F764C",
         defaultcalor: "#B9A27D",
         secondary: "#61811D",
+
+        yape:"#9D089B",
+        plin:"#15D7CB",
+        bn:"#E32120",
+        bcp:"#003FE4",
       },
     },
     fontFamily: {
