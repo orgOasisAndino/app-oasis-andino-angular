@@ -19,7 +19,8 @@ module.exports = {
           950: "#172554",
         },
 
-        default: "#D8B47A",
+        default: "#8F764C",
+        defaultcalor: "#B9A27D",
         secondary: "#61811D",
       },
     },
