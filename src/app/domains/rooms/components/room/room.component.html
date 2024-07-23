@@ -18,10 +18,10 @@
 </section>
 -->
 
-<div class="flex flex-row place-items-center w-auto h-[20rem] rounded-lg">
+<div class="flex flex-row place-items-center w-[40rem] h-[20rem] rounded-lg border border-gray-200 shadow-xl">
   <img class="w-[20rem] h-[20rem] rounded-l-lg" src="../../../../../assets/imgs/room.jpg" alt="room">
 
-  <div class="bg-gray-400 flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
+  <div class="bg-white flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
     <div class="flex flex-col place-items-center">
       <div class="font-bold ">Habitacion {{room.number}}</div>
       <div class="text-xs">Piso {{room.floor}}</div>
@@ -39,13 +39,13 @@
       </ul>
     </div>
 
-    <div class="flex flex-row justify-center items-center mt-4 gap-6 ">
+    <div class="flex flex-row justify-center items-center mt-4 gap-8 ">
       <div>
         <p class="text-md font-bold">{{room.pricePerNight}} </p>
         <p class="text-xs font-light  mt-[0.1rem]">Por noche</p>
       </div>
 
-      <button type="button" class="bg-black text-white rounded-lg w-24 h-9 text-xs" (click)="seleccionarHabitacion()">Seleccionar</button>
+      <button type="button" class="bg-secondary text-white rounded-lg w-24 h-9 text-xs transform transition-transform duration-300 hover:scale-110" (click)="seleccionarHabitacion()">Seleccionar</button>
     </div>
   </div>
 </div>

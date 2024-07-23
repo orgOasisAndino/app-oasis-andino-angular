@@ -67,12 +67,12 @@ module.exports = {
       dancing: ['Dancing Script', 'cursive'],
     },
   },
-  plugins: [
+  plugins: [/*
     function ({ addBase, theme }) {
       addBase({
         'ul': { listStyleType: theme('listStyleType.disc') },
         'ol': { listStyleType: theme('listStyleType.decimal') },
       });
-    },
+    },*/
   ],
 };
