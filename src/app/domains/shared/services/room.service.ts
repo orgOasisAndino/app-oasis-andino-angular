@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Room } from '../models/room.model';
 import { Observable } from 'rxjs';
@@ -16,6 +16,13 @@ export class RoomService {
   getRooms():Observable<Room[]> {
     return this.http.get<Room[]>('http://localhost:8080/oasis-andino/api/room/all');
     //return this.http.get<Room[]>('https://oasis-andino-backend-fi6jg5aela-uc.a.run.app/oasis-andino/api/room/all')
+  }
+
+  getAvailableRooms(fechaInicio: string, fechaFin: string): Observable<Room[]> {
+    let params = new HttpParams()
+      .set('fechaInicio', fechaInicio)
+      .set('fechaFin', fechaFin);
+    return this.http.get<Room[]>('http://localhost:8080/oasis-andino/api/room/disponibles', { params });
   }
 
   getRoom(id: number): Observable<Room> {

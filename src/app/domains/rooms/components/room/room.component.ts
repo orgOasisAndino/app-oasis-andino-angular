@@ -12,9 +12,11 @@ export class RoomComponent {
 
   @Input({required:true}) room!:Room;
 
-  @Output() seleccionar = new EventEmitter<void>();
+  @Output() seleccionar = new EventEmitter();
+  
 
   seleccionarHabitacion() {
-    this.seleccionar.emit();
+    this.seleccionar.emit(this.room);
+  
   }
 }

@@ -10,20 +10,14 @@
 
         <div class="bg-gray-400 flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
           <div class="flex flex-col place-items-center">
-            <div class="font-bold ">Habitacion 401</div>
-            <div class="text-xs">Piso 3</div>
+            <div class="font-bold ">Habitacion  {{aux().number}} </div>
+            <div class="text-xs">Piso {{aux().number}}</div>
             <div class="text-xs">Con vista a la calle</div>
           </div>
 
           <div class="mt-2 text-xs">
             <p class="font-semibold">Características</p>
-            <ul class="pl-5">
-              <li>Baño privado con ducha y agua caliente</li>
-              <li>Cama de dos plazas</li>
-              <li>TV con cable</li>
-              <li>Mesa y silla de escritorio</li>
-              <li>Armario</li>
-            </ul>
+            <p>{{aux().description}}</p>
 
             <p class="font-semibold pt-2">Estilo:</p>
             <ul class="pl-5">
@@ -34,18 +28,18 @@
         </div>
       </div>
 
-      <div class="bg-gray-500 ml-32 pt-4 rounded-sm border-black w-96 h-64">
+      <div class="bg-gray-500 ml-32 pt-4 rounded-sm border-black w-[28rem] h-64">
         <div class="px-6">
             <p>Su estancia</p>
           <div>
-            <p>Fecha de entrada: 10/11/2024 </p>
-            <p>Fecha de salida: 20/11/2024</p>
-            <p>Cantidad de huéspedes: 2</p>
+            <p>Fecha de entrada: {{fechaI}}</p>
+            <p>Fecha de salida: {{fechaF}}</p>
+            <p>Cantidad de huéspedes: {{aux().ability}}</p>
           </div>
         </div>
 
         <div class="border-t border-black mt-14">
-          <p class="text-right pr-5 ">Costo total: S/250</p>
+          <p class="text-right pr-5 ">Costo total: {{preTotal}}</p>
         </div>
       </div>
     </div>
@@ -58,7 +52,7 @@
     </div>
 
     <div class="flex items-center justify-center ">
-      <button routerLink="/payments" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-md mt-8 ml-12 mb-8">Confirmar</button>
+      <button (click)="onConfirmReservation()" routerLink="/payments" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-md mt-8 ml-12 mb-8">Confirmar</button>
     </div>
 
   </div>
@@ -89,13 +83,13 @@
   <div class="flex flex-row justify-center items-center mt-14 w-auto">
     <div class=" flex flex-row justify-center items-center gap-40">
       <div>
-        <label for="fecha" class="block text-sm font-semibold mb-1">Selecciona una fecha de inicio:</label>
-        <input type="date" id="fecha" name="fecha" class="border border-gray-300 p-2 rounded-md">
+        <label for="fechaInicio" class="block text-sm font-semibold mb-1">Selecciona una fecha de inicio:</label>
+        <input type="datetime-local" id="fechaInicio" name="fechaInicio" class="border border-gray-300 p-2 rounded-md">
       </div>
 
       <div>
-        <label for="fecha" class="block text-sm font-semibold mb-1">Selecciona una fecha de fin:</label>
-        <input type="date" id="fecha" name="fecha" class="border border-gray-300 p-2 rounded-md">
+        <label for="fechaFin" class="block text-sm font-semibold mb-1">Selecciona una fecha de fin:</label>
+        <input type="datetime-local" id="fechaFin" name="fechaFin" class="border border-gray-300 p-2 rounded-md">
       </div>
     </div>
 
@@ -105,11 +99,10 @@
 </div>
 
 <div *ngIf="rooms().length > 0" class="container mx-auto grid grid-cols-1 place-items-center mt-8 gap-4">
-  <app-room *ngFor="let room of rooms()" [room]="room" (seleccionar)="seleccionarHabitacion()"></app-room>
+  <app-room *ngFor="let room of rooms()" [room]="room" (seleccionar)="seleccionarHabitacion($event)"></app-room>
 </div>
 
 </ng-template>
-
 
 <!--
 <p>reservation</p>

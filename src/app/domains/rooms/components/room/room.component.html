@@ -23,20 +23,14 @@
 
   <div class="bg-gray-400 flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
     <div class="flex flex-col place-items-center">
-      <div class="font-bold ">Habitacion 401</div>
-      <div class="text-xs">Piso 3</div>
+      <div class="font-bold ">Habitacion {{room.number}}</div>
+      <div class="text-xs">Piso {{room.floor}}</div>
       <div class="text-xs">Con vista a la calle</div>
     </div>
 
     <div class="mt-2 text-xs">
       <p class="font-semibold">Características</p>
-      <ul class="pl-5">
-        <li>Baño privado con ducha y agua caliente</li>
-        <li>Cama de dos plazas</li>
-        <li>TV con cable</li>
-        <li>Mesa y silla de escritorio</li>
-        <li>Armario</li>
-      </ul>
+      <p>{{room.description}}</p>
 
       <p class="font-semibold pt-2">Estilo:</p>
       <ul class="pl-5">
@@ -47,7 +41,7 @@
 
     <div class="flex flex-row justify-center items-center mt-4 gap-6 ">
       <div>
-        <p class="text-md font-bold">S/. 50 </p>
+        <p class="text-md font-bold">{{room.pricePerNight}} </p>
         <p class="text-xs font-light  mt-[0.1rem]">Por noche</p>
       </div>
 

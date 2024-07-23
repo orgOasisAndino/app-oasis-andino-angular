@@ -9,13 +9,30 @@ import { Reservation } from '@shared/models/revervation.model';
 export class ReservationService {
 
   private http=inject(HttpClient);
+  private reservationData: any = {};
 
   constructor() { }
 
 
+//----
+  setReservationData(data: any) {
+    this.reservationData = data;
+  }
+
+  getReservationData() {
+    return this.reservationData;
+  }
+
+  clearReservationData() {
+    this.reservationData = {};
+  }
+//----
+
   getReservations(): Observable<Reservation[]> {
     return this.http.get<Reservation[]>('http://localhost:8080/oasis-andino/api/reservation/all');
   }
+
+
 
   getReservation(id: number): Observable<Reservation> {
     return this.http.get<Reservation>(`http://localhost:8080/oasis-andino/api/reservation/id/${id}`);

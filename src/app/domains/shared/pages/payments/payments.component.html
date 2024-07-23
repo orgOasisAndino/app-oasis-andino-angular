@@ -75,7 +75,10 @@
           </div>
 
           <div  class="flex items-center justify-center">
-            <button type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2">Registrar</button>
+            <button (click)="addUser()" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2">Registrar User</button>
+          </div>
+          <div  class="flex items-center justify-center">
+            <button routerLink="/admin/reservationss" (click)="addReservation()" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2">Registrar Reserva</button>
           </div>
 
         </div>
