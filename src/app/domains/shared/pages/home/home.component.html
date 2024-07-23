@@ -1,22 +1,25 @@
 
 <div>
 
-  <!--pORTADA-->
-  <div class="bg-gray-500 w-full h-[539px] flex flex-col justify-center">
-    <p class="text-7xl pl-28 pb-1 font-bold">Hostal Oasis Andino</p>
-    <button type="button" class="bg-gray-950 text-white w-36 h-11 ml-36 rounded-lg shadow-lg pt-1">
+<!--pORTADA-->
+<div class="relative bg-gray-500 w-full h-[539px] flex flex-col justify-center">
+  <img src="../../../../../assets/imgs/home-portada.jpg" class="absolute inset-0 w-full h-full object-cover " alt="Portada">
+  <div class="relative z-10 text-white pl-28">
+    <p class="text-5xl md:text-7xl pb-1 font-bold">Hostal Oasis Andino</p>
+    <button type="button" class="bg-white text-black w-40 h-11  ml-36 rounded-3xl font-medium shadow-lg pt-1 hover:bg-secondary hover:text-white transform transition-transform duration-300 hover:scale-110">
       Reservar ahora
     </button>
   </div>
 
+</div>
+
   <!--NOSOTROS-->
-  <div class="flex flex-col items-center h-auto mt-4" id="nosotros">
+  <div class="flex flex-col items-center h-auto mt-10" id="nosotros">
     <p
       class="mt-6 xs:text-2xl sm:text-2xl md:text-3xl lg:text-3xl font-dancing  text-center mb-6 xs:w-[20rem] sm:w-[28rem] md:w-[32rem] lg:w-[35rem] dark:text-white">
-      Vive la experiencia única de Pomabamba a través de
-      Oasis Andino.</p>
+      Explora, descansa y disfruta en Oasis Andino, tu hogar en Pomabamba</p>
 
-    <div class="flex lg:flex-row md:flex-row xs:flex-col sm:flex-col items-center justify-center mb-8 gap-4">
+    <div class="flex lg:flex-row md:flex-row xs:flex-col sm:flex-col items-center justify-center mb-16 gap-4 mt-5">
       <!--DESKTOP-->
       <img class="md:w-[22rem] md:h-60 lg:w-[25rem] lg:h-64 rounded-lg hidden md:block" src="./../../../../../assets/imgs/pmbb.jpg"
         alt="img pomabamba">
@@ -24,55 +27,79 @@
       <img class="xs:w-[16rem] xs:h-16 sm:w-[18rem] sm:h-20 rounded-lg block md:hidden" src="./../../../../../assets/imgs/f1.jpg"
         alt="img pomabamba">
 
-      <div class="flex flex-col justify-center items-center w-auto">
-        <p class="xs:text-sm md:text-base lg:text-lg  text-black font-bold mb-3 dark:text-white">Descubre nuestra
-          esencia</p>
+      <div class="flex flex-col justify-center items-center w-auto ">
 
         <p
           class="text-center xs:w-[20rem] sm:w-[24rem] md:w-[27rem] lg:w-[30rem] xs:text-sm md:text-base lg:text-lg mb-3 px-4 dark:text-white">
-          Somos una familia de la ciudad de Pomabamba, dedicada
-          a brindarte una experiencia única en los Andes. Con años de experiencia,
-          ofrecemos un servicio personalizado y cómodas habitaciones con todas las
-          comodidades necesarias. Además, nuestra ubicación te permite explorar la
-          belleza natural de la región. Al hospedarte con nosotros,
-          disfrutas de la hospitalidad de los Andes. </p>
+          Nuestro hospedaje te ofrece un ambiente tranquilo y acogedor, ideal para explorar la belleza natural de Pomabamba.
+          Con una ubicación céntrica y servicios de calidad, te garantizamos una estancia relajante y enriquecedora.</p>
 
-        <p class="xs:text-sm md:text-base lg:text-lg font-semibold dark:text-white">¡Esperamos recibirte pronto!</p>
+        <p class="xs:text-sm md:text-base lg:text-lg font-semibold dark:text-white text-secondary">¡Esperamos recibirte pronto!</p>
       </div>
     </div>
   </div>
 
-  <div class="flex flex-col items-center my-5">
+  <!--Servicios pricipales-->
+  <div class="flex flex-col items-center mt-8">
     <p class="font-dancing text-3xl font-bold">Servicios principales</p>
-    <div class="flex flex-row space-x-4 p-4">
+    <div class="flex flex-row space-x-4 p-4 gap-4">
       <!--CARD1-->
       <div class="flex-1 p-4 flex flex-col items-center gap-3">
-        <div class="font-bold text-base text-center">Habitaciones confortables</div>
-        <div class="bg-gray-500 w-32 h-32 rounded-full"></div>
+        <div class="font-bold text-base text-center text-secondary">Habitaciones confortables</div>
+        <img class=" w-48 h-40" src="./../../../../../assets/imgs/room-confortable.png" alt="habitaciones-confortables">
         <div  class="text-xs w-[13rem] text-center">Disfruta de habitaciones diseñadas para tu comodidad, equipadas con todo lo necesario para una estancia agradable.</div>
       </div>
       <!--CARD2-->
       <div class="flex-1 p-4 flex flex-col items-center gap-3">
-        <div class="font-bold text-base text-center">Transporte Turístico</div>
-        <div class="bg-gray-500 w-32 h-32 rounded-full"></div>
+        <div class="font-bold text-base text-center text-secondary">Transporte Turístico</div>
+        <img class=" w-48 h-40" src="./../../../../../assets/imgs/tour.png" alt="trasporte-turistico">
         <div class="text-xs w-[13rem] text-center">Ofrecemos un servicio de alquiler de combi para que puedas explorar los lugares turísticos de Pomabamba cómodamente y a tu propio ritmo.</div>
       </div>
       <!--CARD3-->
       <div class="flex-1 p-4 flex flex-col items-center gap-3">
-        <div class="font-bold text-base text-center">Ubicación Ideal</div>
-        <div class="bg-gray-500 w-32 h-32 rounded-full"></div>
+        <div class="font-bold text-base text-center text-secondary">Ubicación Ideal</div>
+        <img class=" w-48 h-40" src="./../../../../../assets/imgs/ubicacion-ideal.png" alt="ubicacion-ideal">
         <div class="text-xs w-[13rem] text-center"> Ubicado cerca de la Plaza de Armas de Pomabamba, permitiendo fácil acceso a los principales atractivos y servicios de la ciudad.</div>
       </div>
       <!--CARD4-->
       <div class="flex-1 p-4 flex flex-col items-center gap-3">
-        <div class="font-bold text-base text-center">Atención Personalizada</div>
-        <div class="bg-gray-500 w-32 h-32 rounded-full"></div>
+        <div class="font-bold text-base text-center text-secondary">Atención Personalizada</div>
+        <img class=" w-48 h-40" src="./../../../../../assets/imgs/personalizada.png" alt="atencion-personalizada">
         <div class="text-xs w-[13rem] text-center">Nuestro personal está siempre dispuesto a ayudarte y ofrecerte un servicio personalizado para que te sientas como en casa durante tu estancia.</div>
       </div>
     </div>
   </div>
 
-  <div class="bg-gray-400 flex flex-col items-center">
+<!--formulario-->
+<div class="container p-4 w-full mt-8">
+  <div class="w-full mx-auto mt-10 p-5 border border-gray-200 rounded-lg shadow-lg">
+    <h2 class="text-center text-lg font-bold text-secondary mb-2">¿Tienes dudas?</h2>
+    <p class="text-center text-lg text-gray-600 mb-6">Déjanos tus datos y te contactamos</p>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+      <div class="mb-4">
+        <input formControlName="firstName" type="text" placeholder="Nombres" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-secondary">
+      </div>
+      <div class="mb-4">
+        <input formControlName="lastName" type="text" placeholder="Apellidos" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-secondary">
+      </div>
+      <div class="mb-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <input formControlName="phone" type="text" placeholder="Celular" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-secondary">
+        <input formControlName="email" type="email" placeholder="Correo Electrónico" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-secondary">
+      </div>
+      <div class="mb-4">
+        <textarea formControlName="message" placeholder="Escribe tu consulta aquí:" rows="4" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-secondary"></textarea>
+      </div>
+      <div class="text-center">
+        <button type="submit" class="bg-secondary text-white py-2 px-4 rounded hover:text-white transform transition-transform duration-300 hover:scale-110">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!--Footer-->
+  <div class="bg-default  bg-opacity-30 flex flex-col items-center mt-10 ">
 
     <div class="flex flex-row gap-8 pt-8">
       <div class="flex flex-col items-center gap-3">
@@ -95,7 +122,7 @@
       <img class="w-[35rem] h-[20rem]" src="../../../../../assets/imgs/mapa.png" alt="">
     </div>
 
-    <div class="text-center mt-6 text-sm">2024 Oasis Andino All Rights Reserved</div>
+    <div class="text-center mt-8 text-sm pb-5">2024 Oasis Andino All Rights Reserved</div>
   </div>
 
 </div>
