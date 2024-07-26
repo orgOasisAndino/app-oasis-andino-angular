@@ -3,12 +3,12 @@
   <div class="pt-9">
     <p class="text-3xl font-bold pl-16 pt-9 text-secondary">Detalles de la Reserva</p>
 
-    <div class="flex flex-row pl-16">
+    <div class="flex flex-row pl-16 mt-7 ">
 
-      <div class="flex flex-row place-items-center w-auto h-[20rem] rounded-lg">
+      <div class="flex flex-row place-items-center w-auto h-[20rem] rounded-lg border border-gray-200 shadow-xl">
         <img class="w-[20rem] h-[20rem] rounded-l-lg" src="../../../../../assets/imgs/room.jpg" alt="room">
 
-        <div class="bg-gray-400 flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
+        <div class=" flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
           <div class="flex flex-col place-items-center">
             <div class="font-bold ">Habitacion  {{aux().number}} </div>
             <div class="text-xs">Piso {{aux().number}}</div>
@@ -28,7 +28,7 @@
         </div>
       </div>
 
-      <div class="bg-defaultcalor ml-32 pt-4 rounded-sm border-black w-96 h-64">
+      <div class="bg-gray-300 ml-32 pt-4 rounded-sm border-black w-96 h-64">
         <div class="px-6">
             <p class="font-semibold">Su estancia</p>
           <div>
@@ -51,8 +51,8 @@
       <button class="bg-gray-400 text-white rounded w-6 h-6 flex items-center justify-center">+</button>
     </div>-->
 
-    <div class="flex items-center justify-center ">
-      <button (click)="onConfirmReservation()" routerLink="/payments" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-md mt-8 ml-12 mb-8">Confirmar</button>
+    <div class="flex items-center justify-center mt-5 ">
+      <button (click)="onConfirmReservation()" routerLink="/payments" type="button" class="bg-secondary text-white rounded-lg w-28 h-10 text-md mt-8 ml-12 mb-8 transform transition-transform duration-300 hover:scale-110">Confirmar</button>
     </div>
 
   </div>

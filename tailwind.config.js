@@ -27,6 +27,7 @@ module.exports = {
         plin:"#15D7CB",
         bn:"#E32120",
         bcp:"#003FE4",
+        wtspp:"#29A71A",
       },
     },
     fontFamily: {

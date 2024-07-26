@@ -1,446 +1,946 @@
-<div>
-
-</div>
+<div></div>
 
 <div class="mt-8 ml-16">
   <div class="gap-4 pl-5 pt-9">
     <p class="text-3xl font-bold text-secondary">Métodos de pago</p>
-    <p class="text-lg">Selecciona una opcion de pago para completar tu reserva:</p>
+    <p class="text-lg">
+      Selecciona una opcion de pago para completar tu reserva:
+    </p>
   </div>
 
-
   <div class="flex flex-row justify-center gap-16 mt-16">
-    <img class="w-24 h-24 cursor-pointer" (click)="openModal('yape')" src="../../../../../assets/imgs/yape-1.png" alt="yape1">
-    <img class="w-24 h-24 cursor-pointer" (click)="openModal('plin')" src="../../../../../assets/imgs/plin.png" alt="plin1">
-    <img class="w-[152px] h-[98px] cursor-pointer" (click)="openModal('banco')" src="../../../../../assets/imgs/bn.png" alt="bn1">
-    <img class="w-24 h-24 cursor-pointer" (click)="openModal('bcp')" src="../../../../../assets/imgs/bcp1.png" alt="bcp1">
+    <img
+      class="w-24 h-24 cursor-pointer"
+      (click)="openModal('yape')"
+      src="../../../../../assets/imgs/yape-1.png"
+      alt="yape1"
+    />
+    <img
+      class="w-24 h-24 cursor-pointer"
+      (click)="openModal('plin')"
+      src="../../../../../assets/imgs/plin.png"
+      alt="plin1"
+    />
+    <img
+      class="w-[152px] h-[98px] cursor-pointer"
+      (click)="openModal('banco')"
+      src="../../../../../assets/imgs/bn.png"
+      alt="bn1"
+    />
+    <img
+      class="w-24 h-24 cursor-pointer"
+      (click)="openModal('bcp')"
+      src="../../../../../assets/imgs/bcp1.png"
+      alt="bcp1"
+    />
   </div>
 </div>
 
 <!-- Modales -->
 <!-- YAPE -->
-<div *ngIf="modalVisible === 'yape'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+<div
+  *ngIf="modalVisible === 'yape'"
+  class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+>
   <div class="modal-content bg-white rounded-lg w-auto">
     <div class="pl-2 pt-1">
-      <button class="bg-yape text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium" (click)="closeModal()">X</button>
+      <button
+        class="bg-yape text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium"
+        (click)="closeModal()"
+      >
+        X
+      </button>
     </div>
 
-    <div class="flex flex-col items-center justify-center mb-2">
-      <img class="w-16 h-[66px]" src="../../../../../assets/imgs/yape-1.png" alt="yape">
-      <div class="flex justify-center items-center border-2 border-yape  mt-5  w-[280px] h-[50px] rounded-lg text-center">
-        <p class="text-center text-black text-lg font-medium pt-5">Total a pagar: S/.40</p>
+    <!-- Sección de datos de contacto -->
+    <div *ngIf="currentSection === 'contact'">
+      <div class="flex flex-col items-center justify-center mb-2">
+        <img
+          class="w-16 h-[66px]"
+          src="../../../../../assets/imgs/yape-1.png"
+          alt="yape"
+        />
+        <div
+          class="flex justify-center items-center border-2 border-yape mt-5 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-5">
+            Total a pagar: S/.40
+          </p>
+        </div>
       </div>
+
+      <p class="text-center text-base font-medium pt-6 pb-4 px-11">
+        Para poder procesar tu reserva, necesitamos la siguiente información:
+      </p>
+      <form
+        [formGroup]="contactForm"
+        class="flex flex-col items-center justify-center gap-4 px-4"
+      >
+        <input
+          type="text"
+          formControlName="nombre"
+          placeholder="Nombres"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-yape"
+        />
+        <input
+          type="text"
+          formControlName="apellido"
+          placeholder="Apellidos"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-yape"
+        />
+        <input
+          type="text"
+          formControlName="telefono"
+          placeholder="Teléfono"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-yape"
+        />
+        <div class="flex justify-center pb-8">
+          <button
+            (click)="handleContactContinue()"
+            type="button"
+            class="bg-secondary text-white rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+          >
+            Continuar
+          </button>
+        </div>
+      </form>
     </div>
 
-    <p class="pt-5 pl-4 text-sm font-medium">Escanea el Código QR o Agreganos en tus contactos y completa la siguiente informacion:</p>
-
-    <div class="flex flex-row justify-center items-center gap-8 px-4">
-      <div class="flex flex-col items-center justify-center">
-        <img class="w-[14rem] h-[15rem] rounded-md" src="../../../../../assets/imgs/qr.png" alt="QR">
-        <a href="../../../../../assets/imgs/qr.png" download="qr.png" class="bg-gray-500 text-white rounded-lg w-32 h-10 text-sm mt-2 flex items-center justify-center hover:bg-yape">
-          Descargar QR
-        </a>
+    <!-- Sección de indicaciones de pago -->
+    <div
+      *ngIf="currentSection === 'paymentInstructions'"
+      class="flex flex-col justify-center items-center"
+    >
+      <div class="flex flex-col items-center justify-center mb-2">
+        <img
+          class="w-16 h-[66px]"
+          src="../../../../../assets/imgs/yape-1.png"
+          alt="yape"
+        />
+        <div
+          class="flex justify-center items-center border-2 border-yape mt-5 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-5">
+            Total a pagar: S/.40
+          </p>
+        </div>
       </div>
-
-      <div class="p-2 flex flex-col  text-sm">
-        <div class="flex flex-col gap-4">
-          <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200 " type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
-          <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
-
-          <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
-            <label class="font-medium text-sm" for="captura-pago ">Captura del pago:</label>
-            <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
-          </div>
+      <p class="pt-5 pl-8 text-sm font-medium text-center">
+        Escanea el Código QR o Agréganos en tus contactos y sigues estos pasos:
+      </p>
+      <div class="flex flex-row justify-center items-center gap-6 px-6">
+        <div class="flex flex-col items-center justify-center">
+          <img
+            class="w-[14rem] h-[15rem] rounded-md"
+            src="../../../../../assets/imgs/qr.png"
+            alt="QR"
+          />
+          <a
+            href="../../../../../assets/imgs/qr.png"
+            download="qr.png"
+            class="bg-gray-500 text-white rounded-lg w-32 h-10 text-sm mt-2 flex items-center justify-center hover:bg-yape mb-8"
+          >
+            Descargar QR
+          </a>
         </div>
 
-        <div class="gap-1 pt-3 ">
-          <label for="paymentMessage" class="font-medium">Mensaje del pago:</label>
-          <div class="bg-yellow-200 border border-black p-2 flex flex-row items-center  w-[24rem] h-10 mt-2">
-            <span id="paymentMessage" class="pt-2 pl-2 text-md font-medium">128279giordota.com</span>
-            <button (click)="copyToClipboard()" class="ml-48">
-              <img src="../../../../../assets/imgs/copia.png" alt="Copiar" class="w-4 h-4"/>
-            </button>
-          </div>
+        <div class="p-2 flex flex-col text-sm">
+          <div class="gap-1 pt-3 w-96 text-sm">
+            <p>1. Realiza el pago a través de Yape.</p>
+            <label for="paymentMessage"
+              >2. En el campo de mensaje o nota, asegúrate de escribir el
+              siguiente código:</label
+            >
 
-          <div class="flex flex-row mt-1 gap-2">
-            <p class="text-xs font-medium">*Ingresalo en la seccion mensaje* </p>
-            <div class="relative tooltip">
-              <span class="text-sm cursor-pointer  rounded-full  w-64 h-64">?</span>
-              <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2  w-72 h-96 bg-gray-700 text-white text-center rounded-lg tooltiptext">
-                <img class="w-72 h-96 rounded-lg" src="../../../../../assets/imgs/yapemensaje.png" alt="yapemensaje">
+            <div
+              class="border border-yape rounded-md p-2 flex flex-row items-center justify-center w-[16rem] h-10 ml-4 mt-2"
+            >
+              <span id="paymentMessage" class="pl-2 text-sm font-medium">{{
+                paymentMessageText
+              }}</span>
+              <button (click)="copyToClipboard()" class="ml-12">
+                <img
+                  src="../../../../../assets/imgs/copia.png"
+                  alt="Copiar"
+                  class="w-4 h-4"
+                />
+              </button>
+            </div>
+
+            <div class="flex flex-row mt-1 gap-2">
+              <p class="text-xs font-medium">
+                *Ingresalo en la sección mensaje*
+              </p>
+              <div class="relative tooltip">
+                <span class="text-sm cursor-pointer rounded-full w-64 h-64"
+                  >?</span
+                >
+                <div
+                  class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-72 h-96 bg-gray-700 text-white text-center rounded-lg tooltiptext"
+                >
+                  <img
+                    class="w-72 h-96 rounded-lg"
+                    src="../../../../../assets/imgs/yapemensaje.png"
+                    alt="yapemensaje"
+                  />
+                </div>
               </div>
             </div>
+            <p>
+              3. Envía la captura del pago por whatsapp al siguiente número:
+              <span class="text-wtspp font-medium">+51 916938698</span>
+            </p>
           </div>
-
-          <div  class="flex items-center justify-center">
-            <button (click)="addUser()" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2">Registrar User</button>
+          <div class="flex items-center justify-center mt-6">
+            <button
+              (click)="handlePaymentContinue()"
+              type="button"
+              class="bg-secondary text-white rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+            >
+              Registrar
+            </button>
           </div>
-          <div  class="flex items-center justify-center">
-            <button routerLink="/admin/reservationss" (click)="addReservation()" type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2">Registrar Reserva</button>
-          </div>
-
         </div>
+      </div>
+    </div>
+
+    <!-- Sección de confirmación -->
+    <div *ngIf="currentSection === 'confirmation'">
+      <div class="flex flex-col items-center justify-center px-16">
+        <img
+          class="w-[92px] h-24"
+          src="../../../../../assets/imgs/check.png"
+          alt="listo"
+        />
+        <p class="text-center text-black text-md pt-5">
+          Reserva registrada con exito!
+        </p>
+        <p class="text-center text-black text-md pt-2 w-96">
+          Una vez que recibamos y verifiquemos tu pago, te enviaremos la
+          confirmación de tu reserva por whatsapp.
+        </p>
       </div>
     </div>
   </div>
 </div>
 
 <!-- PLIN -->
-<div *ngIf="modalVisible === 'plin'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-  <div class="modal-content bg-white rounded-lg w-auto  ">
+<div
+  *ngIf="modalVisible === 'plin'"
+  class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+>
+  <div class="modal-content bg-white rounded-lg w-auto">
     <div class="pl-2 pt-1">
-      <button class="bg-plin text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium" (click)="closeModal()">X</button>
+      <button
+        class="bg-plin text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium"
+        (click)="closeModal()"
+      >
+        X
+      </button>
     </div>
 
-    <div class="flex flex-col items-center justify-center mb-2">
-      <img class="w-16 h-[66px]" src="../../../../../assets/imgs/plin.png" alt="yape">
-      <div class="flex justify-center items-center border-2 border-plin   mt-5  w-[280px] h-[50px] rounded-lg text-center">
-        <p class="text-center text-black text-lg font-medium pt-5 ">Total a pagar: S/.40</p>
+    <!-- Sección de datos de contacto -->
+    <div *ngIf="currentSection === 'contact'">
+      <div class="flex flex-col items-center justify-center mb-2">
+        <img
+          class="w-16 h-[66px]"
+          src="../../../../../assets/imgs/plin.png"
+          alt="plin"
+        />
+        <div
+          class="flex justify-center items-center border-2 border-plin mt-5 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-5">
+            Total a pagar: S/.40
+          </p>
+        </div>
       </div>
+
+      <p class="text-center text-base font-medium pt-6 pb-4 px-11">
+        Para poder procesar tu reserva, necesitamos la siguiente información:
+      </p>
+      <form
+        [formGroup]="contactForm"
+        class="flex flex-col items-center justify-center gap-4 px-4"
+      >
+        <input
+          type="text"
+          formControlName="nombre"
+          placeholder="Nombres"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-plin"
+        />
+        <input
+          type="text"
+          formControlName="apellido"
+          placeholder="Apellidos"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-plin"
+        />
+        <input
+          type="text"
+          formControlName="telefono"
+          placeholder="Teléfono"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-plin"
+        />
+        <div class="flex justify-center pb-8">
+          <button
+            (click)="handleContactContinue()"
+            type="button"
+            class="bg-secondary text-white rounded-lg w-28 h-10 text-sm mt-2"
+          >
+            Continuar
+          </button>
+        </div>
+      </form>
     </div>
 
-    <p class="pt-5 pl-4 text-sm font-medium">Escanea el Código QR o Agreganos en tus contactos y completa la siguiente informacion:</p>
-
-    <div class="flex flex-row justify-center items-center gap-8 px-4">
-      <div class="flex flex-col items-center justify-center">
-        <img class="w-[14rem] h-[15rem] rounded-md" src="../../../../../assets/imgs/qr.png" alt="QR">
-        <a href="../../../../../assets/imgs/qr.png" download="qr.png" class="bg-gray-500 text-white rounded-lg w-32 h-10 text-sm mt-2 flex items-center justify-center hover:bg-plin">
-          Descargar QR
-        </a>
+    <!-- Sección de indicaciones de pago -->
+    <div
+      *ngIf="currentSection === 'paymentInstructions'"
+      class="flex flex-col justify-center items-center"
+    >
+      <div class="flex flex-col items-center justify-center mb-2">
+        <img
+          class="w-16 h-[66px]"
+          src="../../../../../assets/imgs/plin.png"
+          alt="plin"
+        />
+        <div
+          class="flex justify-center items-center border-2 border-plin mt-5 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-5">
+            Total a pagar: S/.40
+          </p>
+        </div>
       </div>
-
-      <div class="p-2 flex flex-col  text-sm">
-        <div class="flex flex-col gap-4">
-          <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
-          <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
-
-          <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
-            <label class="font-medium text-sm" for="captura-pago ">Captura del pago:</label>
-            <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
-          </div>
+      <p class="pt-5 pl-8 text-sm font-medium text-center">
+        Escanea el Código QR o Agréganos en tus contactos y sigues estos pasos:
+      </p>
+      <div class="flex flex-row justify-center items-center gap-6 px-6">
+        <div class="flex flex-col items-center justify-center">
+          <img
+            class="w-[14rem] h-[15rem] rounded-md"
+            src="../../../../../assets/imgs/qr.png"
+            alt="QR"
+          />
+          <a
+            href="../../../../../assets/imgs/qr.png"
+            download="qr.png"
+            class="bg-gray-500 text-white rounded-lg w-32 h-10 text-sm mt-2 flex items-center justify-center hover:bg-plin mb-8"
+          >
+            Descargar QR
+          </a>
         </div>
 
-        <div class="gap-1 pt-3 ">
-          <label for="paymentMessage" class="font-medium">Mensaje del pago:</label>
-          <div class="bg-yellow-200 border border-black p-2 flex flex-row items-center  w-[24rem] h-10 mt-2">
-            <span id="paymentMessage" class="pt-2 pl-2 text-md font-medium">128279giordota.com</span>
-            <button (click)="copyToClipboard()" class="ml-48">
-              <img src="../../../../../assets/imgs/copia.png" alt="Copiar" class="w-4 h-4"/>
-            </button>
-          </div>
+        <div class="p-2 flex flex-col text-sm">
+          <div class="gap-1 pt-3 w-96 text-sm">
+            <p>1. Realiza el pago a través de Plin.</p>
+            <label for="paymentMessage"
+              >2. En el campo de mensaje o nota, asegúrate de escribir el
+              siguiente código:</label
+            >
 
-          <div class="flex flex-row mt-1 gap-2">
-            <p class="text-xs font-medium">*Ingresalo en la seccion mensaje* </p>
-            <div class="relative tooltip">
-              <span class="text-sm cursor-pointer  bg-gray-200 rounded-full w-10 h-10">?</span>
-              <div class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2  w-72 h-96 bg-gray-700 text-white text-center rounded-lg tooltiptext">
-                <img class="w-72 h-96 rounded-lg" src="../../../../../assets/imgs/yapemensaje.png" alt="yapemensaje">
+            <div
+              class="border border-plin rounded-md p-2 flex flex-row items-center justify-center w-[16rem] h-10 ml-4 mt-2"
+            >
+              <span id="paymentMessage" class="pl-2 text-sm font-medium">{{
+                paymentMessageText
+              }}</span>
+              <button (click)="copyToClipboard()" class="ml-12">
+                <img
+                  src="../../../../../assets/imgs/copia.png"
+                  alt="Copiar"
+                  class="w-4 h-4"
+                />
+              </button>
+            </div>
+
+            <div class="flex flex-row mt-1 gap-2">
+              <p class="text-xs font-medium">
+                *Ingresalo en la sección mensaje*
+              </p>
+              <div class="relative tooltip">
+                <span class="text-sm cursor-pointer rounded-full w-64 h-64"
+                  >?</span
+                >
+                <div
+                  class="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-72 h-96 bg-gray-700 text-white text-center rounded-lg tooltiptext"
+                >
+                  <img
+                    class="w-72 h-96 rounded-lg"
+                    src="../../../../../assets/imgs/yapemensaje.png"
+                    alt="yapemensaje"
+                  />
+                </div>
               </div>
             </div>
+            <p>
+              3. Envía la captura del pago por whatsapp al siguiente número:
+              <span class="text-wtspp font-medium">+51 916938698</span>
+            </p>
           </div>
-
-          <div  class="flex items-center justify-center">
-            <button type="button" class="bg-black text-white rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110 hover:bg-secondary">Registrar</button>
+          <div class="flex items-center justify-center mt-6">
+            <button
+              (click)="handlePaymentContinue()"
+              type="button"
+              class="bg-secondary text-white rounded-lg w-28 h-10 text-sm mt-2"
+            >
+              Registrar
+            </button>
           </div>
-
         </div>
+      </div>
+    </div>
+
+    <!-- Sección de confirmación -->
+    <div *ngIf="currentSection === 'confirmation'">
+      <div class="flex flex-col items-center justify-center px-16">
+        <img
+          class="w-[92px] h-24"
+          src="../../../../../assets/imgs/check.png"
+          alt="listo"
+        />
+        <p class="text-center text-black text-md pt-5">
+          Reserva registrada con exito!
+        </p>
+        <p class="text-center text-black text-md pt-2 w-96">
+          Una vez que recibamos y verifiquemos tu pago, te enviaremos la
+          confirmación de tu reserva por whatsapp.
+        </p>
       </div>
     </div>
   </div>
 </div>
 
-
-<div *ngIf="modalVisible === 'banco'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-  <div class="modal-content bg-white rounded-lg w-[600px] h-auto overflow-hidden">
+<div
+  *ngIf="modalVisible === 'banco'"
+  class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+>
+  <div
+    class="modal-content bg-white rounded-lg w-[600px] h-auto overflow-hidden"
+  >
     <div class="pl-2 pt-2">
-      <button class="bg-bn text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium" (click)="closeModal()">X</button>
+      <button
+        class="bg-bn text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium"
+        (click)="closeModal()"
+      >
+        X
+      </button>
     </div>
 
     <div class="overflow-auto max-h-[700px]">
       <!-- Primera parte del modal -->
-        <div *ngIf="!selectedPaymentMethod && !thirdPartVisible">
-          <div class="flex flex-col items-center pt-7">
-            <img class="w-[152px] h-[98px]" src="../../../../../assets/imgs/bn.png" alt="bn">
-            <div class="flex justify-center items-center border-2 border-bn mt-3 w-[280px] h-[50px] rounded-lg text-center">
-              <p class="text-center text-black text-lg font-medium pt-4 ">Total a pagar: S/.40</p>
-            </div>
-          </div>
-
-          <p class="pt-10 pl-9 text-md font-medium">Selecciona tu método de pago:</p>
-
-          <div class="flex flex-row items-center justify-center w-full gap-10 pb-7 px-9">
-            <div (click)="selectPaymentMethod('movilWeb')" class="bg-gray-300 w-[270px] h-[80px] rounded-md flex items-center justify-center hover:bg-bn hover:text-white">
-              <p class="text-md  font-medium">Banca Móvil o Web</p>
-            </div>
-            <div (click)="selectPaymentMethod('agenteVentanilla')" class="bg-gray-300 w-[270px] h-[80px] rounded-md flex flex-col items-center justify-center hover:bg-bn hover:text-white">
-              <p class="text-md font-medium pt-2">Agente o Ventanilla</p>
-              <p class="text-sm ">(Bodega, farmacia, etc)</p>
-            </div>
+      <div
+        *ngIf="
+          !selectedPaymentMethod &&
+          !thirdPartVisible &&
+          !contactDataVisible &&
+          !confirmationVisible
+        "
+      >
+        <div class="flex flex-col items-center pt-7">
+          <img
+            class="w-[152px] h-[98px]"
+            src="../../../../../assets/imgs/bn.png"
+            alt="bn"
+          />
+          <div
+            class="flex justify-center items-center border-2 border-bn mt-3 w-[280px] h-[50px] rounded-lg text-center"
+          >
+            <p class="text-center text-black text-lg font-medium pt-4">
+              Total a pagar: S/.40
+            </p>
           </div>
         </div>
-        </div>
 
+        <p class="pt-10 pl-9 text-md font-medium">
+          Selecciona tu método de pago:
+        </p>
 
-    <!-- Segunda parte del modal para Banca Móvil o Web -->
-    <div *ngIf="selectedPaymentMethod === 'movilWeb' && !thirdPartVisible">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Banca Móvil o Web</p>
-        <div class="flex justify-center items-center border-2 border-bcp mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-black text-lg font-medium pt-4 ">Total a pagar: S/.40</p>
+        <div
+          class="flex flex-row items-center justify-center w-full gap-10 pb-7 px-9"
+        >
+          <div
+            (click)="selectPaymentMethod('movilWeb')"
+            class="bg-gray-300 w-[270px] h-[80px] rounded-md flex items-center justify-center hover:bg-bn hover:text-white"
+          >
+            <p class="text-md font-medium">Banca Móvil o Web</p>
+          </div>
+          <div
+            (click)="selectPaymentMethod('agenteVentanilla')"
+            class="bg-gray-300 w-[270px] h-[80px] rounded-md flex flex-col items-center justify-center hover:bg-bn hover:text-white"
+          >
+            <p class="text-md font-medium pt-2">Agente o Ventanilla</p>
+            <p class="text-sm">(Bodega, farmacia, etc)</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div >
-        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
-        <ol class="pl-16 text-sm ">
-          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
-          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
-          <li>Ingresa el siguiente Numero de Cuenta:</li>
-          <p class="font-bold text-lg">04066989653</p>
-          <li>Confirma el titular: Ronald David Rios Perez</li>
-          <li>Escribe el monto de: S/.25.00</li>
-          <li>En Enviar Mensaje escribe: giordota.com</li>
-          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
+    <!-- Sección de datos de contacto -->
+    <div
+      *ngIf="
+        selectedPaymentMethod &&
+        !thirdPartVisible &&
+        !contactDataVisible &&
+        !confirmationVisible
+      "
+    >
+      <div class="flex items-center justify-center">
+        <img
+          class="w-[152px] h-[98px]"
+          src="../../../../../assets/imgs/bn.png"
+          alt="bn"
+        />
+      </div>
+      <p class="text-justify text-base font-medium pt-5 pb-4 px-11">
+        Para poder procesar tu reserva, necesitamos la siguiente información:
+      </p>
+      <form
+        [formGroup]="myForm"
+        class="flex flex-col items-center justify-center gap-4 px-4"
+      >
+        <input
+          type="text"
+          formControlName="nombre"
+          placeholder="Nombres"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-bn"
+        />
+        <input
+          type="text"
+          formControlName="apellido"
+          placeholder="Apellidos"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-bn"
+        />
+        <input
+          type="text"
+          formControlName="telefono"
+          placeholder="Teléfono"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-bn"
+        />
+      </form>
+      <div class="flex justify-center mt-8 pb-5 gap-10">
+        <button
+          (click)="resetPaymentMethod()"
+          class="bg-gray-400 hover:bg-bn hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Volver
+        </button>
+        <button
+          (click)="addUserAndContinue()"
+          class="bg-gray-400 hover:bg-secondary hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Continuar
+        </button>
+      </div>
+    </div>
+
+    <!-- Instrucciones de pago para Agente o Ventanilla -->
+    <div
+      *ngIf="
+        selectedPaymentMethod === 'agenteVentanilla' &&
+        contactDataVisible &&
+        !thirdPartVisible &&
+        !confirmationVisible
+      "
+    >
+      <div class="flex items-center justify-center">
+        <img
+          class="w-[152px] h-[98px]"
+          src="../../../../../assets/imgs/bn.png"
+          alt="bn"
+        />
+      </div>
+      <div class="flex flex-col items-center pt-1">
+
+        <div
+          class="flex justify-center items-center border-2 border-bn mt-2 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-4">
+            Total a pagar: S/.40
+          </p>
+        </div>
+        <p class="text-lg font-medium pt-4">Agente o Ventanilla</p>
+      </div>
+
+      <div class="ml-16  w-[30rem] h-auto">
+        <p class="text-sm pt-3 font-medium">Cómo Realizar tu Pago:</p>
+        <ol class="text-sm">
+          <li>1. Acércate a un AGENTE BANCO DE LA NACIÓN (Bodega, Farmacia, etc)</li>
+          <li>2. Indica que realizarás un depósito a la siguiente cuenta: <span class="text-bn font-medium text-base">04066989653</span></li>
+          <li>3. Confirma el titular:
+            <span class="text-bn">Ronald David Rios Perez</span> 
+          </li>
+          <li>4. Entrega el monto de: S/.15.00</li>
+          <li>
+            5. En tu voucher escribe lo siguiente:
+            <span class="text-bn font-medium">{{ paymentMessageText }}</span>
+          </li>
+          <li>
+            6. Toma una foto a tu voucher, identificando el N° OPERACION, y envíanos la foto al siguiente número:
+            <span class="text-wtspp font-medium">+51 916938698</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="flex flex-row justify-center pt-5 pb-5 gap-10">
+        <button
+          (click)="resetPaymentMethod()"
+          class="bg-gray-400 hover:bg-bn hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Volver
+        </button>
+        <button
+          (click)="registerAndClose()"
+          class="bg-gray-400 hover:bg-secondary hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Registrar
+        </button>
+      </div>
+    </div>
+
+    <!-- Instrucciones de pago para Banca Móvil o Web -->
+    <div
+      *ngIf="
+        selectedPaymentMethod === 'movilWeb' &&
+        contactDataVisible &&
+        !thirdPartVisible &&
+        !confirmationVisible
+      "
+    >
+      <div class="flex flex-col items-center pt-1">
+        <img
+          class="w-[152px] h-[98px]"
+          src="../../../../../assets/imgs/bn.png"
+          alt="bn"
+        />
+        <div
+          class="flex justify-center items-center border-2 border-bn mt-3 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-4">
+            Total a pagar: S/.40
+          </p>
+        </div>
+        <p class="text-lg font-medium pt-4">Banca Móvil o Web</p>
+      </div>
+
+
+      <div class="ml-20  w-[30rem] h-auto">
+        <p class="text-sm pt-3 font-medium">Cómo Realizar tu Pago:</p>
+        <ol class="text-sm">
+          <li>1. Ingresa a tu Banca Móvil (Aplicación) o Banca Web (internet).</li>
+          <li>2. Selecciona Transferir a cuentas.</li>
+          <li>3. Elige la opción a otra cuenta BN </li>
+          <li>4. Ingresa el siguiente Número de Cuenta: <span class="text-bn font-medium text-base">04066989653</span></li>
+          <li>5. Escribe el monto de: S/.40.00</li>
+          <li>6. Confirma el titular:
+            <span class="text-bn">Ronald David Rios Perez</span> 
+          </li>
+          <p>
+            8. Envía la captura del pago por whatsapp, con el siguiente mensaje: <span class="text-bn font-medium">{{ paymentMessageText }}</span>, al número:
+            <span class="text-wtspp font-medium">+51 916938698</span>
+          </p>
         </ol>
       </div>
 
       <div class="flex justify-center pt-5 pb-5 gap-10">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button (click)="showThirdPart('movilWeb')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Registrar</button>
+        <button
+          (click)="resetPaymentMethod()"
+          class="bg-gray-400 hover:bg-bn hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Volver
+        </button>
+        <button
+          (click)="registerAndClose()"
+          class="bg-gray-400 hover:bg-secondary hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Registrar
+        </button>
       </div>
     </div>
 
-    <!-- Segunda parte del modal para Agente o Ventanilla -->
-    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla'  && !thirdPartVisible">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Agente o Ventanilla</p>
-        <div class="flex justify-center items-center border-2 border-bn mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
-        </div>
-      </div>
-
-      <div >
-        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
-        <ol class="pl-16 text-sm">
-          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
-          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
-          <li>Ingresa el siguiente Numero de Cuenta:</li>
-          <p class="font-bold text-lg">04066989653</p>
-          <li>Confirma el titular: Ronald David Rios Perez</li>
-          <li>Escribe el monto de: S/.25.00</li>
-          <li>En Enviar Mensaje escribe: giordota.com</li>
-          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
-        </ol>
-      </div>
-
-      <div class="flex flex-row justify-center pt-5 pb-5 gap-10">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button (click)="showThirdPart('agenteVentanilla')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Registrar</button>
+    <!-- Cuarta parte del modal: Confirmación -->
+    <div *ngIf="confirmationVisible">
+      <div class="flex flex-col items-center justify-center px-16">
+        <img
+          class="w-[92px] h-24"
+          src="../../../../../assets/imgs/check.png"
+          alt="listo"
+        />
+        <p class="text-center text-black text-md pt-5">
+          Reserva registrada con exito!
+        </p>
+        <p class="text-center text-black text-md pt-2 w-96">
+          Una vez que recibamos y verifiquemos tu pago, te enviaremos la
+          confirmación de tu reserva por whatsapp.
+        </p>
       </div>
     </div>
-
-    <!-- Tercera parte del modal para Banca Móvil o Web -->
-    <div *ngIf="thirdPartVisible === 'movilWeb'">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Registrar pago Banca Móvil o Web</p>
-        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
-        </div>
-      </div>
-
-      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
-        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
-          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
-          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
-        </div>
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
-      </div>
-
-      <div class="flex flex-row justify-center gap-10 pb-6">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Enviar</button>
-      </div>
-
-    </div>
-
-    <!-- Tercera parte del modal para Agente o Ventanilla -->
-    <div *ngIf="thirdPartVisible === 'agenteVentanilla'">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Registrar pago agente o ventanilla</p>
-        <div class="flex justify-center items-center bg-slate-500  mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-white text-lg font-medium pt-4">Total a pagar: S/.40</p>
-        </div>
-      </div>
-
-      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
-        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
-          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
-          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
-        </div>
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
-      </div>
-
-      <div class="flex flex-row  justify-center gap-10 pb-6">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Enviar</button>
-      </div>
-    </div>
-
-
   </div>
 </div>
 
-
-<div *ngIf="modalVisible === 'bcp'" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
-  <div class="modal-content bg-white rounded-lg w-[600px] h-auto overflow-hidden">
+<div
+  *ngIf="modalVisible === 'bcp'"
+  class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center"
+>
+  <div
+    class="modal-content bg-white rounded-lg w-[600px] h-auto overflow-hidden"
+  >
     <div class="pl-2 pt-2">
-      <button class="bg-bcp text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium" (click)="closeModal()">X</button>
+      <button
+        class="bg-bcp text-white px-4 w-8 h-8 rounded-full flex items-center justify-center text-xs font-medium"
+        (click)="closeModal()"
+      >
+        X
+      </button>
     </div>
 
     <div class="overflow-auto max-h-[700px]">
       <!-- Primera parte del modal -->
-        <div *ngIf="!selectedPaymentMethod && !thirdPartVisible">
-          <div class="flex flex-col items-center pt-7">
-            <img class="w-24 h-[110px]" src="../../../../../assets/imgs/bcp.png" alt="bn">
-            <div class="flex justify-center items-center border-2 border-bcp mt-3 w-[280px] h-[50px] rounded-lg text-center">
-              <p class="text-center text-black text-lg font-medium pt-4 ">Total a pagar: S/.40</p>
-            </div>
-          </div>
-
-          <p class="pt-10 pl-9 text-md font-medium">Selecciona tu método de pago:</p>
-
-          <div class="flex flex-row items-center justify-center w-full gap-10 pb-7 px-9">
-            <div (click)="selectPaymentMethod('movilWeb')" class="bg-gray-300 w-[270px] h-[80px] rounded-md flex items-center justify-center hover:bg-bcp hover:text-white">
-              <p class="text-md  font-medium">Banca Móvil o Web</p>
-            </div>
-            <div (click)="selectPaymentMethod('agenteVentanilla')" class="bg-gray-300 w-[270px] h-[80px] rounded-md flex flex-col items-center justify-center hover:bg-bcp hover:text-white">
-              <p class="text-md font-medium pt-2">Agente o Ventanilla</p>
-              <p class="text-sm ">(Bodega, farmacia, etc)</p>
-            </div>
+      <div
+        *ngIf="
+          !selectedPaymentMethod &&
+          !thirdPartVisible &&
+          !contactDataVisible &&
+          !confirmationVisible
+        "
+      >
+        <div class="flex flex-col items-center pt-7">
+          <img
+            class="w-24 h-28"
+            src="../../../../../assets/imgs/bcp.png"
+            alt="bn"
+          />
+          <div
+            class="flex justify-center items-center border-2 border-bcp mt-3 w-[280px] h-[50px] rounded-lg text-center"
+          >
+            <p class="text-center text-black text-lg font-medium pt-4">
+              Total a pagar: S/.40
+            </p>
           </div>
         </div>
-        </div>
 
+        <p class="pt-10 pl-9 text-md font-medium">
+          Selecciona tu método de pago:
+        </p>
 
-    <!-- Segunda parte del modal para Banca Móvil o Web -->
-    <div *ngIf="selectedPaymentMethod === 'movilWeb' && !thirdPartVisible">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Banca Móvil o Web</p>
-        <div class="flex justify-center items-center border-2 border-bcp mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-black text-lg font-medium pt-4">Total a pagar: S/.40</p>
+        <div
+          class="flex flex-row items-center justify-center w-full gap-10 pb-7 px-9"
+        >
+          <div
+            (click)="selectPaymentMethod('movilWeb')"
+            class="bg-gray-300 w-[270px] h-[80px] rounded-md flex items-center justify-center hover:bg-bcp hover:text-white"
+          >
+            <p class="text-md font-medium">Banca Móvil o Web</p>
+          </div>
+          <div
+            (click)="selectPaymentMethod('agenteVentanilla')"
+            class="bg-gray-300 w-[270px] h-[80px] rounded-md flex flex-col items-center justify-center hover:bg-bcp hover:text-white"
+          >
+            <p class="text-md font-medium pt-2">Agente o Ventanilla</p>
+            <p class="text-sm">(Bodega, farmacia, etc)</p>
+          </div>
         </div>
       </div>
+    </div>
 
-      <div >
-        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
-        <ol class="pl-16 text-sm ">
-          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
-          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
-          <li>Ingresa el siguiente Numero de Cuenta:</li>
-          <p class="font-bold text-lg">04066989653</p>
-          <li>Confirma el titular: Ronald David Rios Perez</li>
-          <li>Escribe el monto de: S/.25.00</li>
-          <li>En Enviar Mensaje escribe: giordota.com</li>
-          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
+    <!-- Sección de datos de contacto -->
+    <div
+      *ngIf="
+        selectedPaymentMethod &&
+        !thirdPartVisible &&
+        !contactDataVisible &&
+        !confirmationVisible
+      "
+    >
+      <div class="flex items-center justify-center">
+        <img
+          class="w-24 h-28"
+          src="../../../../../assets/imgs/bcp.png"
+          alt="bn"
+        />
+      </div>
+      <p class="text-justify text-base font-medium pt-5 pb-4 px-11">
+        Para poder procesar tu reserva, necesitamos la siguiente información:
+      </p>
+      <form
+        [formGroup]="myForm"
+        class="flex flex-col items-center justify-center gap-4 px-4"
+      >
+        <input
+          type="text"
+          formControlName="nombre"
+          placeholder="Nombres"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-bcp"
+        />
+        <input
+          type="text"
+          formControlName="apellido"
+          placeholder="Apellidos"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-bcp"
+        />
+        <input
+          type="text"
+          formControlName="telefono"
+          placeholder="Teléfono"
+          class="w-96 h-10 rounded-lg pl-3 bg-gray-200 p-2 border border-gray-300 focus:outline-none focus:border-bcp"
+        />
+      </form>
+      <div class="flex justify-center mt-8 pb-5 gap-10">
+        <button
+          (click)="resetPaymentMethod()"
+          class="bg-gray-400 hover:bg-bcp hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Volver
+        </button>
+        <button
+          (click)="addUserAndContinue()"
+          class="bg-gray-400 hover:bg-secondary hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Continuar
+        </button>
+      </div>
+    </div>
+
+    <!-- Instrucciones de pago para Agente o Ventanilla -->
+    <div
+      *ngIf="
+        selectedPaymentMethod === 'agenteVentanilla' &&
+        contactDataVisible &&
+        !thirdPartVisible &&
+        !confirmationVisible
+      "
+    >
+      <div class="flex items-center justify-center">
+        <img
+          class="w-24 h-28"
+          src="../../../../../assets/imgs/bcp.png"
+          alt="bn"
+        />
+      </div>
+      <div class="flex flex-col items-center pt-1">
+
+        <div
+          class="flex justify-center items-center border-2 border-bcp mt-2 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-4">
+            Total a pagar: S/.40
+          </p>
+        </div>
+        <p class="text-lg font-medium pt-4">Agente o Ventanilla</p>
+      </div>
+
+      <div class="ml-16  w-[30rem] h-auto">
+        <p class="text-sm pt-3 font-medium">Cómo Realizar tu Pago:</p>
+        <ol class="text-sm">
+          <li>1. Acércate a un AGENTE BCP (Bodega, Farmacia, etc)</li>
+          <li>2. Indica que realizarás un depósito a la siguiente cuenta: <span class="text-bcp font-medium text-base">04066989653</span></li>
+          <li>3. Confirma el titular:
+            <span class="text-bcp">Ronald David Rios Perez</span> 
+          </li>
+          <li>4. Entrega el monto de: S/.15.00</li>
+          <li>
+            5. En tu voucher escribe lo siguiente:
+            <span class="text-bcp font-medium">{{ paymentMessageText }}</span>
+          </li>
+          <li>
+            6. Toma una foto a tu voucher, identificando el N° OPERACION, y envíanos la foto al siguiente número:
+            <span class="text-wtspp font-medium">+51 916938698</span>
+          </li>
         </ol>
       </div>
 
       <div class="flex flex-row justify-center pt-5 pb-5 gap-10">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button (click)="showThirdPart('agenteVentanilla')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Registrar</button>
+        <button
+          (click)="resetPaymentMethod()"
+          class="bg-gray-400 hover:bg-bcp hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Volver
+        </button>
+        <button
+          (click)="registerAndClose()"
+          class="bg-gray-400 hover:bg-secondary hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Registrar
+        </button>
       </div>
     </div>
 
-    <!-- Segunda parte del modal para Agente o Ventanilla -->
-    <div *ngIf="selectedPaymentMethod === 'agenteVentanilla' && !thirdPartVisible">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Agente o Ventanilla</p>
-        <div class="flex justify-center items-center border-2 border-bcp mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-black text-lg font-medium pt-4">Total a pagar: S/.40</p>
+    <!-- Instrucciones de pago para Banca Móvil o Web -->
+    <div
+      *ngIf="
+        selectedPaymentMethod === 'movilWeb' &&
+        contactDataVisible &&
+        !thirdPartVisible &&
+        !confirmationVisible
+      "
+    >
+      <div class="flex flex-col items-center pt-1">
+        <img
+          class="w-24 h-28"
+          src="../../../../../assets/imgs/bcp.png"
+          alt="bn"
+        />
+        <div
+          class="flex justify-center items-center border-2 border-bcp mt-3 w-[280px] h-[50px] rounded-lg text-center"
+        >
+          <p class="text-center text-black text-lg font-medium pt-4">
+            Total a pagar: S/.40
+          </p>
         </div>
+        <p class="text-lg font-medium pt-4">Banca Móvil o Web</p>
       </div>
 
-      <div >
-        <p class="pl-8 text-sm pt-8 font-medium">Como Realizar tu Pago:</p>
-        <ol class="pl-16 text-sm">
-          <li>Ingresa a tu Banca Movil (Aplicacion) o Banca Web (internet)</li>
-          <li>Selecciona Transferir Dinero o Transferencias a Terceros.</li>
-          <li>Ingresa el siguiente Numero de Cuenta:</li>
-          <p class="font-bold text-lg">04066989653</p>
-          <li>Confirma el titular: Ronald David Rios Perez</li>
-          <li>Escribe el monto de: S/.25.00</li>
-          <li>En Enviar Mensaje escribe: giordota.com</li>
-          <li>Toma una Captura e identifica el N° OPERACION y dale en REGISTRAR</li>
+
+      <div class="ml-20  w-[30rem] h-auto">
+        <p class="text-sm pt-3 font-medium">Cómo Realizar tu Pago:</p>
+        <ol class="text-sm">
+          <li>1. Ingresa a tu Banca Móvil (Aplicación) o Banca Web (internet).</li>
+          <li>2. Selecciona Transferir dinero</li>
+          <li>3. Ingresa el siguiente Número de Cuenta: <span class="text-bcp font-medium text-base">04066989653</span></li>
+          <li>4. Confirma el titular:
+            <span class="text-bcp">Ronald David Rios Perez</span> 
+          </li>
+          <li>5. Escribe el monto de: S/.40.00</li>
+          <p>
+            6. Envía la captura del pago por whatsapp, con el siguiente mensaje: <span class="text-bcp font-medium">{{ paymentMessageText }}</span>, al número:
+            <span class="text-wtspp font-medium">+51 916938698</span>
+          </p>
         </ol>
       </div>
 
-      <div class="flex flex-row justify-center pt-5 pb-5 gap-10">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button (click)="showThirdPart('agenteVentanilla')" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Registrar</button>
+      <div class="flex justify-center pt-5 pb-5 gap-10">
+        <button
+          (click)="resetPaymentMethod()"
+          class="bg-gray-400 hover:bg-bcp hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Volver
+        </button>
+        <button
+          (click)="registerAndClose()"
+          class="bg-gray-400 hover:bg-secondary hover:text-white text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110"
+        >
+          Registrar
+        </button>
       </div>
     </div>
 
-
-    <!-- Tercera parte del modal para Banca Móvil o Web -->
-    <div *ngIf="thirdPartVisible === 'movilWeb'">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Registrar pago Banca Móvil o Web</p>
-        <div class="flex justify-center items-center border-2 border-bcp  mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-black text-lg font-medium pt-4">Total a pagar: S/.40</p>
-        </div>
-      </div>
-
-      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
-        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
-          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
-          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
-        </div>
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
-      </div>
-
-      <div class="flex flex-row justify-center gap-10 pb-6">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Enviar</button>
-      </div>
-
-    </div>
-
-    <!-- Tercera parte del modal para Agente o Ventanilla -->
-    <div *ngIf="thirdPartVisible === 'agenteVentanilla'">
-      <div class="flex flex-col items-center pt-5">
-        <p class="text-lg font-medium">Registrar pago agente o ventanilla</p>
-        <div class="flex justify-center items-center border-2 border-bcp mt-2 w-[280px] h-[50px] rounded-lg text-center">
-          <p class="text-center text-black text-lg font-medium pt-4">Total a pagar: S/.40</p>
-        </div>
-      </div>
-
-      <div class="flex flex-col items-center gap-5 mt-8 mb-6">
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="fecha-hora" id="fecha-hora" placeholder="Fecha y Hora">
-        <div class="bg-gray-400 p-3 flex flex-col gap-1 text-sm rounded-lg w-[24rem] ">
-          <label class="font-medium text-sm" for="captura-pagonBN">Captura del pago:</label>
-          <input type="file" name="captura-pago" id="captura-pago" placeholder="Captura del pago">
-        </div>
-        <input class="w-[24rem] h-10 rounded-lg pl-3 bg-gray-200" type="text" name="nombre" id="nombre" placeholder="Nombre Completo:">
-      </div>
-
-      <div class="flex flex-row  justify-center gap-10 pb-6">
-        <button (click)="resetPaymentMethod()" class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Volver</button>
-        <button class="bg-gray-400 text-black rounded-lg w-28 h-10 text-sm mt-2 transform transition-transform duration-300 hover:scale-110">Enviar</button>
+    <!-- Cuarta parte del modal: Confirmación -->
+    <div *ngIf="confirmationVisible">
+      <div class="flex flex-col items-center justify-center px-16">
+        <img
+          class="w-[92px] h-24"
+          src="../../../../../assets/imgs/check.png"
+          alt="listo"
+        />
+        <p class="text-center text-black text-md pt-5">
+          Reserva registrada con exito!
+        </p>
+        <p class="text-center text-black text-md pt-2 w-96">
+          Una vez que recibamos y verifiquemos tu pago, te enviaremos la
+          confirmación de tu reserva por whatsapp.
+        </p>
       </div>
     </div>
-
   </div>
 </div>
-
-
-
-
-
-
-
-
-
 
