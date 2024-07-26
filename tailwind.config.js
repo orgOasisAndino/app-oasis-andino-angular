@@ -4,6 +4,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      backgroundImage: {
+        'custom-image': "url('/src/assets/imgs/atardecer.jpg')",
+      },
       colors: {
         primary: {
           50: "#eff6ff",
@@ -18,16 +21,14 @@ module.exports = {
           900: "#1e3a8a",
           950: "#172554",
         },
-
         default: "#8F764C",
         defaultcalor: "#B9A27D",
         secondary: "#61811D",
-
-        yape:"#9D089B",
-        plin:"#15D7CB",
-        bn:"#E32120",
-        bcp:"#003FE4",
-        wtspp:"#29A71A",
+        yape: "#9D089B",
+        plin: "#15D7CB",
+        bn: "#E32120",
+        bcp: "#003FE4",
+        wtspp: "#29A71A",
       },
     },
     fontFamily: {
@@ -68,12 +69,5 @@ module.exports = {
       dancing: ['Dancing Script', 'cursive'],
     },
   },
-  plugins: [/*
-    function ({ addBase, theme }) {
-      addBase({
-        'ul': { listStyleType: theme('listStyleType.disc') },
-        'ol': { listStyleType: theme('listStyleType.decimal') },
-      });
-    },*/
-  ],
+  plugins: [],
 };
