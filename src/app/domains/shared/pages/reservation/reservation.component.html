@@ -3,23 +3,20 @@
   <div class="pt-9 ">
     <p class="text-2xl sm:text-2xl md:text-2xl lg:text-3xl font-bold pl-16 pt-9 text-secondary">Detalles de la Reserva</p>
 
-    <div class="flex flex-col sm:flex-col md:flex-row lg:flex-rowpl-16 mt-7 ">
+    <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-center mt-7 pl-16 bg-pink-500 sm:bg-red-300 md:bg-lime-200 lg:bg-purple-400">
 
-      <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row place-items-center w-[24rem] sm:w-[24rem] md:w-[40rem] lg:w-[40rem] h-[16rem] sm:h-[15rem] md:h-[20rem] lg:h-[20rem] rounded-lg border border-gray-200 shadow-xl bg-pink-500 sm:bg-red-300 md:bg-lime-200 lg:bg-purple-400">
-        <!--<img class="md:w-[18rem] lg:w-[20rem] md:h-[20rem] lg:h-[20rem] md:rounded-l-lg lg:rounded-l-lg hidden md:block" src="../../../../../assets/imgs/room.jpg" alt="room">-->
-        <img class="w-[20rem] h-[17rem] sm:h-[17rem] md:h-[20rem] lg:h-[20rem] rounded-t-lg sm:rounded-t-lg md:rounded-l-lg lg:rounded-l-lg" src="../../../../../assets/imgs/room.jpg" alt="room">
+      <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row place-items-center w-[16rem] sm:w-[17rem] md:w-[18rem] lg:w-[20rem] h-[24rem] sm:h-[26rem] md:h-[20rem] lg:h-[20rem] rounded-lg border border-gray-200 shadow-xl ">
+        <img class="w-[16rem] sm:w-[17rem] md:w-[18rem] lg:w-[20rem] h-[10rem] sm:h-[12rem] md:h-[16rem] lg:h-[20rem] rounded-l-lg" src="../../../../../assets/imgs/room.jpg" alt="room">
 
-        <div class=" flex flex-col items-center justify-center px-6 w-auto h-[20rem] rounded-r-lg pt-2">
-          <div class="flex flex-col place-items-center">
-            <div class="font-bold text-sm">Habitación  {{aux().number}} </div>
+        <div class="bg-red-500 flex flex-col items-center justify-center px-2 sm:px-2 md:px-6 lg:px-6 w-[16rem] sm:w-[17rem] md:w-[20rem] lg:w-[80rem] lg:h-[20rem] rounded-b-lg sm:rounded-b-lg md:rounded-r-lg lg:rounded-r-lg">
+          <div class="flex flex-col place-items-center pt-3 sm:pt-4 md:pt-0 lg:pt-0">
+            <div class="font-bold">Habitación {{aux().number}}</div>
             <div class="text-xs">Piso {{aux().number}}</div>
             <div class="text-xs">Con vista a la calle</div>
           </div>
-
           <div class="mt-2 text-xs">
             <p class="font-semibold">Características</p>
             <p>{{aux().description}}</p>
-
             <p class="font-semibold pt-2">Estilo:</p>
             <ul class="pl-5">
               <li>Paredes: Color específico</li>
@@ -27,10 +24,11 @@
             </ul>
           </div>
         </div>
+
       </div>
 
-      <div class="bg-gray-300  pt-4 rounded-sm border-black w-96 h-64">
-        <div class="px-6">
+      <div class="bg-gray-300  pt-4 rounded-sm border-black w-96 h-64 ml-80">
+        <div class="px-6 text-xs sm:text-xs md:text-base lg:text-base">
             <p class="font-semibold">Su estancia</p>
           <div>
             <p>Fecha de entrada: {{fechaI}}</p>
@@ -39,7 +37,7 @@
           </div>
         </div>
 
-        <div class="border-t border-black mt-14">
+        <div class="border-t border-black mt-14 text-xs sm:text-xs md:text-base lg:text-base">
           <p class="text-right pr-5 ">Costo total: {{preTotal}}</p>
         </div>
       </div>
