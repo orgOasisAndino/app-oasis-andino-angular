@@ -1,17 +1,17 @@
  <!--pORTADA-->
 <div class="relative bg-gray-500 w-full h-[539px] flex flex-col justify-center">
   <img src="../../../../../assets/imgs/pmbb-portada.JPG" class="absolute inset-0 w-full h-full object-cover opacity-100" alt="Portada">
-  <div class="relative z-10 text-white pl-28">
+  <div class="relative z-10 text-white md:pl-28 lg:pl-28 pt-56 sm:pt-48 md:pt-0 lg:pt-0">
     <p class="text-5xl md:text-7xl pt-36 font-bold">Descubre Pomabamba</p>
   </div>
 </div>
 
 <!--Datos Generales-->
-<div class=" flex flex-row justify-center items-center pt-24 pb-10 gap-14">
+<div class=" flex flex-row justify-center items-center pt-24 pb-10 gap-14 ">
   <div class="w-[40rem] h-auto">
-    <p class="font-dancing text-[50px] font-bold text-default ">Datos Generales</p>
+    <p class="font-dancing text-[34px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-bold text-default text-center sm:text-center md:text-left lg:text-left">Datos Generales</p>
 
-    <div class="text-[20px]">
+    <div class="text-sm sm:text-sm md:text-[15px] lg:text-[20px] px-2 sm:px-3 md:px-0 lg:px-0">
       <p>Ubicación: Sierra norte del Perú, en la región de Ancash</p>
       <p>Extensión: 634 km²</p>
       <p>Capital: Pomabamba (3150 msnm)</p>
@@ -22,16 +22,16 @@
     </div>
   </div>
 
-  <img class="w-[300px] h-[350px] rounded-lg" src="../../../../../assets/imgs/cedro-letras.jpg" alt="datos-generales">
+  <img class="w-[300px] h-[350px] rounded-lg hidden md:block " src="../../../../../assets/imgs/cedro-letras.jpg" alt="datos-generales">
 </div>
 
 
 <!--Cómo llegar-->
 <div class=" flex flex-row justify-center items-center py-14 gap-14">
   <div class="w-[40rem] h-auto">
-    <p class="font-dancing text-[50px] font-bold  text-default">Cómo llegar</p>
+    <p class="font-dancing text-[34px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-bold  text-default text-center sm:text-center md:text-left lg:text-left">Cómo llegar</p>
 
-    <div class="text-[20px]">
+    <div class="text-sm sm:text-sm md:text-[15px] lg:text-[20px] px-2 sm:px-3 md:px-0 lg:px-0">
       <p>Ubicación: Sierra norte del Perú, en la región de Ancash</p>
       <p>Extensión: 634 km²</p>
       <p>Capital: Pomabamba (3150 msnm)</p>
@@ -42,16 +42,16 @@
     </div>
   </div>
 
-  <img class="w-[300px] h-[350px] rounded-lg" src="../../../../../assets/imgs/ejemplo.jpg" alt="datos-generales">
+  <img class="w-[300px] h-[350px] rounded-lg hidden md:block" src="../../../../../assets/imgs/ejemplo.jpg" alt="datos-generales">
 </div>
 
 
 <!--Reseña histórica-->
-<div class=" flex flex-row justify-center items-center py-14 gap-20">
-  <div class="w-[40rem] h-auto ">
-    <p class="font-dancing text-[50px] font-bold  text-default ">Reseña histórica</p>
+<div class=" flex flex-row items-center justify-center py-14 gap-20">
+  <div class="w-auto sm:w-auto md:w-[40rem] lg:w-[40rem] h-auto flex flex-col justify-center items-center   mx-5">
+    <p class="font-dancing text-[34px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-bold  text-default text-center sm:text-center md:text-left lg:text-left">Reseña histórica</p>
 
-    <div class="text-[20px]">
+    <div class=" text-sm sm:text-sm md:text-[15px] lg:text-[20px] px-2 sm:px-3 md:px-0 lg:px-0">
       <p class="w-full text-justify">Pomabamba, ubicada en el departamento de Áncash, Perú, es una ciudad con una rica
           historia que se remonta a tiempos prehispánicos. Su nombre, derivado del quechua "Puma Pampa"
           que significa "llanura de pumas", refleja la fauna que habitaba la región.</p>
@@ -71,14 +71,12 @@
       <p class=" w-full text-justify">El siglo XX trajo consigo mejoras en infraestructura y transporte, conectando mejor a Pomabamba con otras
           regiones y facilitando el comercio y el turismo. Hoy en día, la ciudad es conocida por sus paisajes andinos, aguas termales y festividades tradicionales.</p>
       <p class=" w-full text-justify">Pomabamba es un lugar de impresionante belleza natural y riqueza histórica, ofreciendo a sus visitantes una ventana a su fascinante pasado y vibrante presente.</p>
-
-
     </div>
   </div>
 
-  <div class="flex flex-col gap-6">
+  <div *ngIf="mostrarSeccion" class="flex flex-col gap-6" >
     <img class="w-[300px] h-[350px] rounded-lg" src="../../../../../assets/imgs/puma.jpg" alt="datos-generales">
-    <img class="w-[300px] h-[350px] rounded-lg" src="../../../../../assets/imgs/chimaychipintura.jpg" alt="datos-generales">
+    <img class="w-[300px] h-[350px] rounded-lg " src="../../../../../assets/imgs/chimaychipintura.jpg" alt="datos-generales">
   </div>
 
 </div>
@@ -86,15 +84,15 @@
 
 
 <!--Actividades Culturales-->
-<div class="py-14">
-  <div class="flex flex-row justify-center items-center gap-48">
-    <p class="font-dancing text-[50px] font-bold  text-default">Actividades Culturales</p>
-    <p class="w-[27rem] text-center text-sm font-light">Pomabamba es un crisol de tradiciones y festividades que reflejan la riqueza cultural de sus habitantes.
+<div class="py-14 ">
+  <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-center items-center gap-3 sm:gap-3 md:gap-40 lg:gap-48">
+    <p class="font-dancing text-[34px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-bold  text-default text-center sm:text-center md:text-left lg:text-left">Actividades Culturales</p>
+    <p class="w-[17rem] sm:w-[17rem] md:w-[27rem] lg:w-[27rem] text-center text-xs sm:text-xs md:text-sm lg:text-sm font-light">Pomabamba es un crisol de tradiciones y festividades que reflejan la riqueza cultural de sus habitantes.
       Una oportunidad para conectarse con la historia y las costumbres de esta encantadora ciudad andina. </p>
   </div>
 
   <!--CARDS-->
-  <div class="flex flex-row items-center justify-center gap-5 mt-8">
+  <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-center gap-7 sm:gap-7 md:gap-5 lg:gap-5 mt-8">
     <div class="w-[280px] h-[422px]  border border-gray-200 rounded-lg shadow-lg">
       <img class="w-[280px] h-[210px] rounded-tl-lg rounded-tr-lg " src="../../../../../assets/imgs/prueba.jpg" alt="actividades-culturales">
       <p class="text-center pt-2 font-semibold">Fiestas Patronales</p>
@@ -126,15 +124,19 @@
     </div>
 
   </div>
+
+
+
+
 </div>
 
 
 <!--Lugares turísticos-->
 
-<div  class="py-14">
-  <div class="flex flex-row justify-center items-center gap-48">
-    <p class="font-dancing text-[50px] font-bold  text-default">Lugares Turísticos</p>
-    <p class="w-[27rem] text-center text-sm font-light">Aventúrate en Pomabamba, un destino perfecto
+<div *ngIf="mostrarSeccion" class="py-14">
+  <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-center items-center gap-3 sm:gap-3 md:gap-40 lg:gap-48">
+    <p class="font-dancing text-[34px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-bold  text-default text-center sm:text-center md:text-left lg:text-left">Lugares Turísticos</p>
+    <p class="w-[17rem] sm:w-[17rem] md:w-[27rem] lg:w-[27rem] text-center text-sm font-light">Aventúrate en Pomabamba, un destino perfecto
       para los amantes de la naturaleza y la historia, con vistas espectaculares y tradiciones vibrantes.</p>
   </div>
 
@@ -217,14 +219,14 @@
 <!--Gastronomía local-->
 
 <div class="py-14">
-  <div class="flex flex-row justify-center items-center gap-48">
-    <p class="font-dancing text-[50px] font-bold  text-default">Gastronomía Local</p>
-    <p class="w-[27rem] text-center text-sm font-light">Descubre la gastronomía de Pomabamba,
+  <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row justify-center items-center gap-3 sm:gap-3 md:gap-40 lg:gap-48">
+    <p class="font-dancing text-[34px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-bold  text-default text-center sm:text-center md:text-left lg:text-left">Gastronomía Local</p>
+    <p class="w-[17rem] sm:w-[17rem] md:w-[27rem] lg:w-[27rem] text-center text-sm font-light">Descubre la gastronomía de Pomabamba,
       un deleite para los sentidos con sabores autóctonos y auténticos que reflejan la rica herencia cultural de la región.</p>
   </div>
 
   <!--CARDS-->
-  <div class="flex flex-row items-center justify-center gap-5 mt-8">
+  <div class="flex flex-col sm:flex-col md:flex-row lg:flex-row items-center justify-center gap-7 sm:gap-7 md:gap-5 lg:gap-5 mt-8">
     <div class="w-[280px] h-[406px] rounded-lg border border-gray-200 shadow-lg">
       <img class="w-[280px] h-[210px] rounded-tl-lg rounded-tr-lg" src="../../../../../assets/imgs/cuy.JPG" alt="actividades-culturales">
       <p class="text-center pt-2 font-semibold">Picante de cuy</p>
@@ -258,8 +260,8 @@
 
 
 <!--Blog post-->
-<div class="py-14 ">
-  <p class="font-dancing text-[50px] font-bold pl-36  text-default">Blog Post</p>
+<div *ngIf="mostrarSeccion" class="py-14 ">
+  <p class="font-dancing text-[34px] sm:text-[34px] md:text-[40px] lg:text-[50px] font-bold pl-36  text-default text-center sm:text-center md:text-left lg:text-left">Blog Post</p>
 
   <div class="flex flex-row items-center justify-center gap-4">
     <div class="bg-gray-300 w-[330px] h-[270px]">
